@@ -1,0 +1,49 @@
+% ============================================================
+%  SECTION — BUDGET
+%
+%  HOW TO CUSTOMISE
+%  ─────────────────
+%  1. Fill in each line item: description, quantity, unit cost, total.
+%  2. The "Total" row is computed manually — update it when you add rows.
+%  3. Add/remove \midrule-separated categories as needed.
+%  4. Change "MYR" to your currency if necessary.
+%  5. Note funding source / acquisition method in the footnote line.
+% ============================================================
+
+
+
+\begin{frame}{Budget}
+  \centering
+  \small
+
+  % X column stretches to fill \textwidth, keeping numeric columns fixed-width
+  \begin{tabularx}{\textwidth}{X r r r}
+    \toprule
+    \textbf{Item} & \textbf{Qty} & \textbf{Unit (MYR)} & \textbf{Total (MYR)} \\
+    \midrule
+    % ---- Equipment ----
+    \multicolumn{4}{l}{\textit{Equipment}} \\
+    TODO: Item name  & TODO & TODO & TODO \\
+    TODO: Item name  & TODO & TODO & TODO \\
+    \midrule
+    % ---- Materials / Consumables ----
+    \multicolumn{4}{l}{\textit{Materials \& Consumables}} \\
+    TODO: Item name  & TODO & TODO & TODO \\
+    TODO: Item name  & TODO & TODO & TODO \\
+    \midrule
+    % ---- Software / Licences ----
+    \multicolumn{4}{l}{\textit{Software \& Licences}} \\
+    Open-source only & -- & -- & 0 \\
+    \midrule
+    % ---- Miscellaneous ----
+    \multicolumn{4}{l}{\textit{Miscellaneous}} \\
+    TODO: Item name  & TODO & TODO & TODO \\
+    \midrule[\heavyrulewidth]
+    \textbf{Total}   &      &      & \textbf{TODO} \\
+    \bottomrule
+  \end{tabularx}
+
+  \vspace{0.5em}
+  % Funding source, acquisition notes (purchase / lab stock / borrowed), spending cap
+  {\footnotesize TODO: e.g.\ Requested from Physics Dept.\ student project fund (cap: MYR~500).}
+\end{frame}

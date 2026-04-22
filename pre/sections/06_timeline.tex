@@ -1,0 +1,77 @@
+% ============================================================
+%  SECTION 6 — PROJECT TIMELINE (Gantt chart)
+%
+%  HOW TO CUSTOMISE
+%  ─────────────────
+%  1. Set \WeekStart and \WeekEnd (inclusive).
+%  2. Edit \TaskList: each entry is {Row label}{x_start}{x_end}{fill colour}.
+%     x values are (absolute_week - \WeekStart), zero-indexed.
+%  3. \numTasks must equal the number of entries in \TaskList.
+%
+%  EXAMPLE  (weeks 5–15, 11 columns):
+%    \WeekStart = 5,  \WeekEnd = 15
+%    Task "Build apparatus" runs weeks 5–7  →  x_start=0, x_end=3
+%    Task "Data collection" runs weeks 8–10 →  x_start=3, x_end=6
+% ============================================================
+
+\begin{frame}{Project Timeline}
+\centering
+\scriptsize
+
+% ---- USER-EDITABLE PARAMETERS ----
+\def\WeekStart{5}    % TODO: first week number shown
+\def\WeekEnd{15}     % TODO: last  week number shown
+\def\numTasks{6}     % TODO: must match number of tasks below
+
+\begin{tikzpicture}[x=0.6cm, y=0.8cm]
+
+  \tikzstyle{bar}     = [draw, rounded corners=1pt, thick]
+  \tikzstyle{grid}    = [gray!50, thin]
+  \tikzstyle{lbl}     = [anchor=east, align=right, font=\scriptsize]
+  \tikzstyle{wlbl}    = [font=\scriptsize, anchor=south, rotate=90]
+
+  \pgfmathtruncatemacro{\numCols}{\WeekEnd - \WeekStart + 1}
+  \pgfmathtruncatemacro{\topRow}{\numTasks + 1}
+
+  % ---- GRID ----
+  \foreach \x in {0,...,\numCols}{
+    \draw[grid] (\x,1) -- (\x,\topRow);
+  }
+  \foreach \y in {1,...,\numTasks}{
+    \draw[grid] (0,\y) -- (\numCols,\y);
+  }
+  \draw[black,thick] (0,1) rectangle (\numCols,\topRow);
+
+  % ---- WEEK LABELS (generated from \WeekStart and \WeekEnd) ----
+  \pgfmathtruncatemacro{\lastIdx}{\numCols-1}
+  \foreach \idx in {0,...,\lastIdx}{
+    \pgfmathtruncatemacro{\wnum}{\WeekStart+\idx}
+    \node[wlbl] at (\idx+0.5,\topRow+0.2) {\wnum};
+  }
+
+  % ---- TASK LABELS & BARS ----
+  % Format: \draw[bar,fill=<colour>] (x0,row) rectangle (x1,row+1);
+  %         \node[lbl] at (-0.4,row+0.5) {Label};
+  % Rows count from bottom (1) to top (\numTasks).
+
+  % TODO: replace each row with your task
+  \node[lbl] at (-0.4,6.5) {TODO: Task 1};
+  \draw[bar,fill=cyan!50]          (0,6) rectangle (2,7);   % weeks start..start+2
+
+  \node[lbl] at (-0.4,5.5) {TODO: Task 2};
+  \draw[bar,fill=green!45]         (0,5) rectangle (3,6);
+
+  \node[lbl] at (-0.4,4.5) {TODO: Task 3};
+  \draw[bar,fill=blue!55]          (3,4) rectangle (6,5);
+
+  \node[lbl] at (-0.4,3.5) {TODO: Task 4};
+  \draw[bar,fill=yellow!70!orange] (4,3) rectangle (8,4);
+
+  \node[lbl] at (-0.4,2.5) {TODO: Task 5};
+  \draw[bar,fill=violet!60]        (1,2) rectangle (9,3);
+
+  \node[lbl] at (-0.4,1.5) {TODO: Task 6};
+  \draw[bar,fill=red!60]           (8,1) rectangle (11,2);
+
+\end{tikzpicture}
+\end{frame}

@@ -1,0 +1,85 @@
+% ============================================================
+%  LAB PROJECT PROPOSAL PRESENTATION
+%  Xiamen University Malaysia
+%
+%  STRUCTURE
+%    main.tex              ← you are here (preamble + metadata)
+%    sections/
+%      01_background.tex   ← motivation & literature context
+%      02_goals.tex        ← objectives & hypotheses
+%      03_setup.tex        ← apparatus & materials
+%      04_methodology.tex  ← analysis plan & theory
+%      05_safety.tex       ← safety & compliance
+%      06_timeline.tex     ← Gantt chart
+%      07_references.tex   ← bibliography slide
+%
+%  HOW TO COMPILE
+%    latexmk -pdf main.tex   (or: pdflatex + biber + pdflatex×2)
+%
+%  TO ADD/REMOVE A SECTION
+%    Comment out the corresponding \input line below.
+% ============================================================
+
+\documentclass{beamer}
+
+\usetheme{moloch}
+
+% ---- Bibliography ----
+\usepackage[backend=biber, style=ieee]{biblatex}
+\addbibresource{references.bib}          % TODO: populate references.bib
+
+% ---- Layout ----
+\usepackage[absolute,overlay]{textpos}
+\setlength{\TPHorizModule}{1mm}
+\setlength{\TPVertModule}{1mm}
+
+% ---- Math ----
+\usepackage{amsmath, amssymb, physics}
+\usepackage{tabularx}
+% ---- Tables ----
+\usepackage{booktabs}
+
+% ---- TikZ (Gantt + diagrams) ----
+\usepackage{tikz}
+\usetikzlibrary{positioning, arrows.meta, shapes.geometric}
+
+% ============================================================
+%  TITLE-PAGE LOGO
+% ============================================================
+\newcommand{\TitlePageLogo}{%
+  \begin{textblock*}{0mm}(\dimexpr\paperwidth-30mm\relax,8mm)
+    \includegraphics[height=20mm]{figs/xiamen_logo.png}%
+  \end{textblock*}%
+}
+\addtobeamertemplate{title page}{}{\TitlePageLogo}
+
+% ============================================================
+%  METADATA — edit here only
+% ============================================================
+\title{TODO: Project Title}
+\subtitle{Lab Project Proposal}
+\author{TODO: Author 1 \and TODO: Author 2 \and TODO: Author 3}
+\institute{Xiamen University Malaysia}
+\date{TODO: \today}
+
+% ============================================================
+\begin{document}
+% ============================================================
+
+\maketitle
+
+\input{sections/01_background}
+\input{sections/02_goals}
+\input{sections/03_setup}
+\input{sections/04_methodology}
+\input{sections/05_safety}
+\input{sections/06_timeline}
+\input{sections/07_budget}
+
+
+
+\begin{frame}[allowframebreaks]{References}
+  \printbibliography[heading=none]
+\end{frame}
+
+\end{document}
