@@ -5,13 +5,13 @@
 \begin{frame}{Project Goals}
   \begin{enumerate}
     \item \textbf{Define objective function} for elastic energy storage
-          performance within a fixed planar footprint.
+          performance within a fixed planar footprint
+          ($100\times100\times3$\,mm).
     \item \textbf{Generate candidate structures} via:
           \begin{itemize}
             \item Manual baseline designs (straight, folded, serpentine, curved beams)
             \item Computational topology optimisation (SIMP method)
           \end{itemize}
-    \item \textbf{Fabricate and test} all candidates using 3D-printed PLA samples.
     \item \textbf{Compare} force--displacement behaviour, energy storage
           $E_{\text{in}}$, energy release $E_{\text{out}}$, and efficiency
           $\eta$ across topologies.
@@ -20,18 +20,122 @@
   \end{enumerate}
 \end{frame}
 
-\begin{frame}{Hypotheses}
+\note{%
   \begin{itemize}
-    \item \textbf{H1:} 
-    Topologies with distributed deformation (e.g. serpentine or curved structures) will achieve higher energy storage efficiency than straight beam structures.
-      \begin{itemize}
-        \item \textit{Rationale:} More uniform deformation reduces stress concentration and energy loss.
-      \end{itemize}
+    \item Five concrete deliverables. Footprint locked at
+          $100\times100\times3$ mm so every comparison is
+          apples-to-apples (same volume budget, same boundary box).
+    \item Two design paths in parallel: hand-designed baselines
+          (straight / folded / serpentine / curved) and SIMP-optimised
+          layouts in Octave.
+    \item PLA chosen for repeatable FDM printing; same spool, same
+          slicer settings used across all samples to remove material
+          variability.
+    \item Measurement = $F$--$\delta$ curve under quasi-static
+          loading; integrate to get $E_{\text{in}}$ / $E_{\text{out}}$,
+          divide for $\eta$.
+    \item Goal 5 is the science: link the measured $\eta$ back to
+          where the strain actually went in each topology.
+  \end{itemize}
+}
 
-    \item \textbf{H2:} 
-    Topology-optimized structures will outperform manually designed baselines in terms of energy efficiency and performance stability.
-      \begin{itemize}
-        \item \textit{Rationale:} Optimization explores non-intuitive designs that better balance stiffness and compliance.
-      \end{itemize}
+\begin{frame}{Hypotheses}
+  \begin{itemize}\setlength\itemsep{8pt}
+    \item \textbf{H1 — Fold-count effect within a pattern family:}
+          For a fixed planar footprint ($100\times100\times3$\,mm) and
+          constant material volume, the elastic energy storage
+          efficiency $\eta$ of a folded beam varies systematically
+          with the \emph{number of folds} within a given pattern
+          (e.g.\ a triangular wave with 1, 2, 3, \ldots\ folds; a
+          square wave across multiple folds).
+
+    \item \textbf{H2 — Topology optimisation:}
+          Topology-optimised structures will outperform manually
+          designed baselines in terms of energy efficiency and
+          performance stability.
   \end{itemize}
 \end{frame}
+
+\note{%
+  \begin{itemize}
+    \item \textbf{H1 rationale:} more folds lengthen the effective
+          load path inside the same footprint, distributing strain
+          and delaying local yielding. But excessive folding
+          concentrates stress at the corners of each fold. Expect a
+          \emph{non-monotonic} optimum --- $\eta$ rises with fold
+          count, peaks, then falls.
+    \item Pattern family is the second axis: triangular vs.\ square
+          wave at the same fold count gives different corner radii
+          and different bending-vs-torsion mix. Both knobs swept.
+    \item Volume held constant, not volume \emph{fraction} ---
+          we add/remove fold count by changing geometry, not by
+          changing how much PLA is in the box.
+    \item \textbf{H2 rationale:} SIMP explores non-intuitive layouts
+          that balance stiffness and compliance better than human
+          intuition. Also expect lower trial-to-trial variance ---
+          optimised geometry should be less sensitive to print
+          defects because load is distributed.
+    \item If H1 holds but H2 fails $\Rightarrow$ folded heuristic is
+          already near-optimal. If both hold, SIMP wins on both
+          mean $\eta$ and variance.
+  \end{itemize}
+}
+
+\begin{frame}{Experimental Variables}
+  \footnotesize
+  \begin{tabularx}{\textwidth}{@{}p{2.0cm}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X@{}}
+    \toprule
+     & \textbf{H1: Fold count / pattern}
+     & \textbf{H2: Topology optimisation} \\
+    \midrule
+    \textbf{Independent}
+      & Number of folds $n$\newline
+        Pattern family\newline
+        (triangular wave, square wave, \ldots)
+      & Design method (manual baseline vs.\ SIMP-optimised) \\
+    \addlinespace
+    \textbf{Dependent}
+      & $\eta$, $E_{\text{in}}$, $E_{\text{out}}$, stiffness $k$,
+        peak force $F_{\max}$
+      & $\eta$, $E_{\text{in}}$, $E_{\text{out}}$, stiffness $k$,
+        trial-to-trial variance \\
+    \addlinespace
+    \textbf{Controlled}
+      & Material volume\newline
+        Footprint $100{\times}100{\times}3$\,mm\newline
+        PLA + print parameters\newline
+        Clamping BCs\newline
+        Quasi-static loading rate
+      & Volume fraction $f$\newline
+        Footprint $100{\times}100{\times}3$\,mm\newline
+        PLA + print parameters\newline
+        Clamping BCs\newline
+        Quasi-static loading rate \\
+    \bottomrule
+  \end{tabularx}
+\end{frame}
+
+\note{%
+  \begin{itemize}
+    \item Walk the table column by column so the audience sees H1
+          and H2 share most variables and only diverge on the IV.
+    \item Independent: H1 sweeps a geometric integer ($n$) and a
+          pattern family; H2 swaps the design \emph{generator}
+          (human vs.\ SIMP).
+    \item Dependent: $\eta$, $E_{\text{in}}$, $E_{\text{out}}$, $k$
+          identical between hypotheses --- enables direct
+          cross-hypothesis comparison. H2 adds variance because the
+          claim is partly about repeatability.
+    \item Controlled: footprint, material, print settings, clamping,
+          loading rate are locked. The only difference is what is
+          held constant about the material:
+          \begin{itemize}
+            \item H1 fixes \emph{volume} (same gram of PLA, varied
+                  geometry).
+            \item H2 fixes \emph{volume fraction} (SIMP constraint
+                  $f = V/V_0$).
+          \end{itemize}
+    \item Every sample printed from one PLA spool, same slicer
+          profile, same orientation --- removes batch effects.
+  \end{itemize}
+}

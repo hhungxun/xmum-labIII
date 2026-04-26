@@ -3,15 +3,19 @@
 *.out
 *.toc
 *.bbl
-dd
 *.blg
 *.fls
 *.fdb_latexmk
+*.bcf
+*.run.xml
 *.synctex.gz
 *.synctex(busy)
+*-SAVE-ERROR
 _minted*/
 *.nav
 *.snm
 *.vrb
-# Uncomment below if you don't want to track compiled PDFs
-# *.pdf
+
+# Generated PDFs from local LaTeX workspaces
+pre/*.pdf
+proposal_draft/*.pdf

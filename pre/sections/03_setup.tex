@@ -2,35 +2,184 @@
 %  SECTION 3 — EXPERIMENTAL SETUP
 % ============================================================
 
+%------------------------------------------------
+\begin{frame}{Theory Framework}
+  
+      The theoretical basis is divided into three parts:
+      \begin{enumerate}
+        \item \textbf{Topology optimization model}: convert structure design
+            into a material distribution problem.
+        \item \textbf{Mechanical constraints}: ensure the design is safe under
+            static and cyclic loading.
+      \item \textbf{Energy-based objective}: optimise stored elastic energy
+            and energy release efficiency.
+      \end{enumerate}
 
-\begin{frame}{Theoretical Basis}
-  \begin{itemize}
-    \item \textbf{SIMP method \cite{Toh_2025}} \cite{sigmund2001, andreassen2011}:
-          each element $e$ carries a pseudo-density $\rho_e\in[0,1]$.
-          Effective stiffness:
-          \[
-            E_e = \rho_e^{\,p}\,E_0, \qquad p \ge 3
-          \]
-    \item \textbf{Objective}: minimise structural compliance (maximise
-          stiffness) subject to a volume fraction constraint $f$:
-          \[
-            \min_{\boldsymbol{\rho}}\;
-            \mathbf{F}^{\!\top}\mathbf{U}
-            \quad\text{s.t.}\quad
-            \frac{\sum \rho_e v_e}{V_0} \le f,
-            \quad \mathbf{K}(\boldsymbol{\rho})\,\mathbf{U} = \mathbf{F}
-          \]
-    \item \textbf{Elastic energy stored}:
-          \[
-            E_{\text{in}} = \int_0^{\delta_{\max}} F(\delta)\,\dd{\delta}
-          \]
-          measured from force--displacement curve.
-    \item Efficiency $\eta = E_{\text{out}} / E_{\text{in}}$
-          captures hysteresis and dissipation losses.
-  \end{itemize}
+
 \end{frame}
 
+%------------------------------------------------
+\begin{frame}{Topology Optimization Model}
+  \small
+  \begin{columns}[T]
+    \column{0.58\textwidth}
+    \begin{itemize}\setlength\itemsep{3pt}
+      \item The design domain is divided into finite elements.
+      
+      
 
+      \item Each element has a density variable:
+        \[
+          \rho_e \in [0,1]
+        \]
+      \item $\rho_e=1$ represents solid material, while $\rho_e=0$
+            represents void.
+      \item The SIMP method connects density and material stiffness
+            \cite{bendsoe2003topology, sigmund2001}:
+        \[
+          E_e = E_{\min}+\rho_e^{\,p}(E_0-E_{\min})
+        \]
+      \item The structural response is obtained from:
+        \[
+          \mathbf{K}(\boldsymbol{\rho})\mathbf{U}=\mathbf{F}
+        \]
+    \end{itemize}
+
+    \column{0.40\textwidth}
+    \centering
+    \begin{tikzpicture}[scale=0.35, every node/.style={font=\tiny}]
+      \draw[thick] (0,0) rectangle (4,3);
+      \foreach \x in {0,0.67,...,3.5}{
+        \foreach \y in {0,0.75,...,2.5}{
+          \fill[gray!20] (\x+0.05,\y+0.05) rectangle (\x+0.58,\y+0.62);
+        }
+      }
+      \node[below] at (2,-0.2) {Finite element domain};
+      \draw[fill=black!60] (-0.15,0) rectangle (0,3);
+      \node[left] at (-0.15,1.5) {Fixed};
+      \draw[->,red,thick] (4,1.5) -- (4.8,1.5) node[right]{$F$};
+
+      \draw[->,very thick] (2,-0.5) -- (2,-1.0);
+
+      \begin{scope}[yshift=-3.8cm]
+        \draw[thick,dashed] (0,0) rectangle (4,3);
+        \fill[blue!40] (0,2.2) -- (1.4,2.8) -- (3.0,2.0) -- (4,1.5)
+                        -- (3.0,1.0) -- (1.4,0.2) -- (0,0.8) -- cycle;
+        \fill[blue!40] (0,1.2) -- (1.0,1.5) -- (2.0,1.5) -- (0,1.8) -- cycle;
+        \node[below] at (2,-0.2) {Optimised material layout};
+      \end{scope}
+    \end{tikzpicture}
+  \end{columns}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}{Mechanical and Physical Constraints}
+  \small
+  \begin{columns}[T]
+    \column{0.58\textwidth}
+    \begin{itemize}\setlength\itemsep{3pt}
+      \item The optimised structure must be mechanically feasible,
+            not only numerically optimal.
+      \item \textbf{Static strength}: avoid yielding or fracture:
+        \[
+          \sigma_{\mathrm{vm}} \le \sigma_y
+        \]
+      \item \textbf{Fatigue constraint}: evaluate cyclic loading using
+            a Goodman-type criterion \cite{zhao2023topology}:
+        \[
+          \frac{\sigma_a}{\sigma_e}
+          +
+          \frac{\sigma_m}{\sigma_{ut}}
+          \le 1
+        \]
+      \item Mean and alternating stresses are:
+        \[
+          \sigma_a=\frac{\sigma_{\max}-\sigma_{\min}}{2},
+          \qquad
+          \sigma_m=\frac{\sigma_{\max}+\sigma_{\min}}{2}
+        \]
+      \item \textbf{Manufacturing}: density filtering controls minimum
+            feature size and improves 3D printability.
+    \end{itemize}
+
+    \column{0.40\textwidth}
+    \centering
+    \begin{tikzpicture}[scale=0.78, every node/.style={font=\tiny}]
+      \node[draw, rounded corners, fill=blue!10, minimum width=3.2cm] (u) at (0,0) 
+        {Displacement $\mathbf{U}$};
+      \node[draw, rounded corners, fill=gray!15, minimum width=3.2cm] (s) at (0,-0.9) 
+        {Stress $\sigma = \mathbf{D}\mathbf{B}\mathbf{u}$};
+      \node[draw, rounded corners, fill=red!12, minimum width=3.2cm] (st) at (0,-1.8) 
+        {Static strength};
+      \node[draw, rounded corners, fill=orange!15, minimum width=3.2cm] (fa) at (0,-2.7) 
+        {Fatigue life};
+      \node[draw, rounded corners, fill=green!12, minimum width=3.2cm] (ma) at (0,-3.6) 
+        {Manufacturability};
+
+      \draw[->, thick] (u) -- (s);
+      \draw[->, thick] (s) -- (st);
+      \draw[->, thick] (s) -- (fa);
+      \draw[->, thick] (s) -- (ma);
+    \end{tikzpicture}
+  \end{columns}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}{Energy-Based Objective Function}
+  \small
+  \begin{columns}[T]
+    \column{0.56\textwidth}
+    \begin{itemize}\setlength\itemsep{3pt}
+      \item The reference paper mainly maximises output displacement
+            for compliant mechanisms \cite{zhao2023topology}.
+      \item Our project modifies the objective toward energy storage.
+      \item Stored elastic energy can be evaluated by the
+            force--displacement curve:
+        \[
+          E_{\text{stored}}
+          =
+          \int_0^{\delta_{\max}} F(\delta)\,\dd{\delta}
+        \]
+      \item For an approximately linear elastic response:
+        \[
+          E_{\text{stored}}
+          \approx
+          \frac{1}{2}k\delta_{\max}^2
+        \]
+      \item Energy release efficiency:
+        \[
+          \eta=\frac{E_{\text{out}}}{E_{\text{in}}}
+        \]
+    \end{itemize}
+
+    \column{0.42\textwidth}
+    \centering
+    \begin{tikzpicture}[scale=0.75, every node/.style={font=\tiny}]
+      \draw[->, thick] (0,0) -- (4.2,0) node[right] {$\delta$};
+      \draw[->, thick] (0,0) -- (0,3.2) node[above] {$F$};
+
+      \draw[blue, very thick] 
+        plot[smooth] coordinates {(0,0) (0.8,0.6) (1.6,1.3) (2.4,2.0) (3.4,2.8)};
+      \fill[blue!20, opacity=0.7]
+        (0,0) -- plot[smooth] coordinates {(0.8,0.6) (1.6,1.3) (2.4,2.0) (3.4,2.8)}
+        -- (3.4,0) -- cycle;
+
+      \node at (2.25,0.9) {$E_{\text{stored}}=\int F\,d\delta$};
+
+      \begin{scope}[yshift=-3.9cm]
+        \node[draw, rounded corners, fill=gray!15, minimum width=3.6cm] (a) at (0,0) 
+          {Original: maximise displacement};
+        \node[draw, rounded corners, fill=orange!18, minimum width=3.6cm] (b) at (0,-1.0) 
+          {This project: maximise energy};
+        \node[draw, rounded corners, fill=green!15, minimum width=3.6cm] (c) at (0,-2.0) 
+          {Subject to safety constraints};
+
+        \draw[->, thick] (a) -- (b);
+        \draw[->, thick] (b) -- (c);
+      \end{scope}
+    \end{tikzpicture}
+  \end{columns}
+\end{frame}
 \begin{frame}{Experimental Setup --- Overview}
   \centering
   % Schematic of testing platform
