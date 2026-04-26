@@ -48,152 +48,6 @@
       \field{title}{Compliant Mechanisms}
       \field{year}{2001}
     \endentry
-    \entry{bendsoe2003topology}{book}{}{}
-      \name{author}{2}{}{%
-        {{hash=066757951bb74a0ccbc836e088427aea}{%
-           family={Bendsøe},
-           familyi={B\bibinitperiod},
-           given={Martin\bibnamedelima P.},
-           giveni={M\bibinitperiod\bibinitdelim P\bibinitperiod}}}%
-        {{hash=d76f1c09e8d8d06e1b7c3c254efeae1a}{%
-           family={Sigmund},
-           familyi={S\bibinitperiod},
-           given={Ole},
-           giveni={O\bibinitperiod}}}%
-      }
-      \list{location}{1}{%
-        {Berlin, Heidelberg}%
-      }
-      \list{publisher}{1}{%
-        {Springer}%
-      }
-      \strng{namehash}{3d5875a2890550ef236660822a299231}
-      \strng{fullhash}{3d5875a2890550ef236660822a299231}
-      \strng{fullhashraw}{3d5875a2890550ef236660822a299231}
-      \strng{bibnamehash}{3d5875a2890550ef236660822a299231}
-      \strng{authorbibnamehash}{3d5875a2890550ef236660822a299231}
-      \strng{authornamehash}{3d5875a2890550ef236660822a299231}
-      \strng{authorfullhash}{3d5875a2890550ef236660822a299231}
-      \strng{authorfullhashraw}{3d5875a2890550ef236660822a299231}
-      \field{sortinit}{2}
-      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{title}{Topology Optimization: Theory, Methods, and Applications}
-      \field{year}{2003}
-      \verb{doi}
-      \verb 10.1007/978-3-662-05086-6
-      \endverb
-    \endentry
-    \entry{sigmund2001}{article}{}{}
-      \name{author}{1}{}{%
-        {{hash=d76f1c09e8d8d06e1b7c3c254efeae1a}{%
-           family={Sigmund},
-           familyi={S\bibinitperiod},
-           given={Ole},
-           giveni={O\bibinitperiod}}}%
-      }
-      \strng{namehash}{d76f1c09e8d8d06e1b7c3c254efeae1a}
-      \strng{fullhash}{d76f1c09e8d8d06e1b7c3c254efeae1a}
-      \strng{fullhashraw}{d76f1c09e8d8d06e1b7c3c254efeae1a}
-      \strng{bibnamehash}{d76f1c09e8d8d06e1b7c3c254efeae1a}
-      \strng{authorbibnamehash}{d76f1c09e8d8d06e1b7c3c254efeae1a}
-      \strng{authornamehash}{d76f1c09e8d8d06e1b7c3c254efeae1a}
-      \strng{authorfullhash}{d76f1c09e8d8d06e1b7c3c254efeae1a}
-      \strng{authorfullhashraw}{d76f1c09e8d8d06e1b7c3c254efeae1a}
-      \field{sortinit}{3}
-      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{Structural and Multidisciplinary Optimization}
-      \field{number}{2}
-      \field{title}{A 99 Line Topology Optimization Code Written in {Matlab}}
-      \field{volume}{21}
-      \field{year}{2001}
-      \field{pages}{120\bibrangedash 127}
-      \range{pages}{8}
-      \verb{doi}
-      \verb 10.1007/s001580050176
-      \endverb
-    \endentry
-    \entry{liu2018topology}{article}{}{}
-      \true{moreauthor}
-      \true{morelabelname}
-      \name{author}{10}{}{%
-        {{hash=6b881d188740fd2dde41d38a7cafb850}{%
-           family={Liu},
-           familyi={L\bibinitperiod},
-           given={Jikai},
-           giveni={J\bibinitperiod}}}%
-        {{hash=5c35189454736079bb9c690f73aea2c3}{%
-           family={Gaynor},
-           familyi={G\bibinitperiod},
-           given={Andrew\bibnamedelima T.},
-           giveni={A\bibinitperiod\bibinitdelim T\bibinitperiod}}}%
-        {{hash=a42075c3ada07d21908ad5f41cb1a220}{%
-           family={Chen},
-           familyi={C\bibinitperiod},
-           given={Shikui},
-           giveni={S\bibinitperiod}}}%
-        {{hash=4de1896cd656cece01578a2f62d7e3fa}{%
-           family={Kang},
-           familyi={K\bibinitperiod},
-           given={Zhan},
-           giveni={Z\bibinitperiod}}}%
-        {{hash=84c2102ad54186d7477842421e416280}{%
-           family={Suresh},
-           familyi={S\bibinitperiod},
-           given={Krishnan},
-           giveni={K\bibinitperiod}}}%
-        {{hash=48c387d0603b179e253838c1b96b2a2e}{%
-           family={Taber},
-           familyi={T\bibinitperiod},
-           given={Akihiro},
-           giveni={A\bibinitperiod}}}%
-        {{hash=ad7517ebe80619f75e6261e4aae4f0e1}{%
-           family={Li},
-           familyi={L\bibinitperiod},
-           given={Lei},
-           giveni={L\bibinitperiod}}}%
-        {{hash=ea84cc700bf8af00f48fe860e35156ac}{%
-           family={Bacrat},
-           familyi={B\bibinitperiod},
-           given={Caglar},
-           giveni={C\bibinitperiod}}}%
-        {{hash=635a91d7bdf6cd594dcad3900c75256c}{%
-           family={Fang},
-           familyi={F\bibinitperiod},
-           given={Jiguang},
-           giveni={J\bibinitperiod}}}%
-        {{hash=2e19f117f2923574b82023ddbfe80eec}{%
-           family={Li},
-           familyi={L\bibinitperiod},
-           given={Xiaodong},
-           giveni={X\bibinitperiod}}}%
-      }
-      \strng{namehash}{04ae6a321f5cda5acababd7288fe873c}
-      \strng{fullhash}{92e9f94b19a66ad530aed6c90aafa731}
-      \strng{fullhashraw}{92e9f94b19a66ad530aed6c90aafa731}
-      \strng{bibnamehash}{04ae6a321f5cda5acababd7288fe873c}
-      \strng{authorbibnamehash}{04ae6a321f5cda5acababd7288fe873c}
-      \strng{authornamehash}{04ae6a321f5cda5acababd7288fe873c}
-      \strng{authorfullhash}{92e9f94b19a66ad530aed6c90aafa731}
-      \strng{authorfullhashraw}{92e9f94b19a66ad530aed6c90aafa731}
-      \field{sortinit}{4}
-      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{Structural and Multidisciplinary Optimization}
-      \field{number}{6}
-      \field{title}{Current and Future Trends in Topology Optimization for Additive Manufacturing}
-      \field{volume}{57}
-      \field{year}{2018}
-      \field{pages}{2457\bibrangedash 2483}
-      \range{pages}{27}
-      \verb{doi}
-      \verb 10.1007/s00158-018-1994-3
-      \endverb
-    \endentry
     \entry{zhu2020compliant}{article}{}{}
       \name{author}{7}{}{%
         {{hash=60ffde6e39475aaad5747090dd834be4}{%
@@ -240,8 +94,8 @@
       \strng{authornamehash}{07a5653c063fb109f79919248b3a425f}
       \strng{authorfullhash}{371106267d244a42d039f20b9881d19c}
       \strng{authorfullhashraw}{371106267d244a42d039f20b9881d19c}
-      \field{sortinit}{5}
-      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{Mechanism and Machine Theory}
@@ -292,60 +146,72 @@
       \verb 10.1115/1.4056959
       \endverb
     \endentry
-    \entry{Toh_2025}{article}{}{}
-      \name{author}{4}{}{%
-        {{hash=86813bb42be6b8a0a04582adc0bf8fba}{%
-           family={Toh},
-           familyi={T\bibinitperiod},
-           given={Yu-Xuan},
-           giveni={Y\bibinithyphendelim X\bibinitperiod}}}%
-        {{hash=58a3c3a3d723b186c0a63284a9ef4d21}{%
-           family={Chin},
-           familyi={C\bibinitperiod},
-           given={Yun-Ten},
-           giveni={Y\bibinithyphendelim T\bibinitperiod}}}%
-        {{hash=af1617a5755a07172e946af8e7b6643c}{%
-           family={Wu},
-           familyi={W\bibinitperiod},
-           given={Ethan\bibnamedelima Quanrun},
-           giveni={E\bibinitperiod\bibinitdelim Q\bibinitperiod}}}%
-        {{hash=7b7ac73f03fd680d5fc89aed3a8e3c2c}{%
-           family={Lim},
-           familyi={L\bibinitperiod},
-           given={Yen-Kheng},
-           giveni={Y\bibinithyphendelim K\bibinitperiod}}}%
+    \entry{bendsoe2003topology}{book}{}{}
+      \name{author}{2}{}{%
+        {{hash=066757951bb74a0ccbc836e088427aea}{%
+           family={Bendsøe},
+           familyi={B\bibinitperiod},
+           given={Martin\bibnamedelima P.},
+           giveni={M\bibinitperiod\bibinitdelim P\bibinitperiod}}}%
+        {{hash=d76f1c09e8d8d06e1b7c3c254efeae1a}{%
+           family={Sigmund},
+           familyi={S\bibinitperiod},
+           given={Ole},
+           giveni={O\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Berlin, Heidelberg}%
       }
       \list{publisher}{1}{%
-        {IOP Publishing}%
+        {Springer}%
       }
-      \strng{namehash}{600be46cf16b45cb356658b20476dd91}
-      \strng{fullhash}{765035e247418e0e0e36bf984a8f3fc6}
-      \strng{fullhashraw}{765035e247418e0e0e36bf984a8f3fc6}
-      \strng{bibnamehash}{765035e247418e0e0e36bf984a8f3fc6}
-      \strng{authorbibnamehash}{765035e247418e0e0e36bf984a8f3fc6}
-      \strng{authornamehash}{600be46cf16b45cb356658b20476dd91}
-      \strng{authorfullhash}{765035e247418e0e0e36bf984a8f3fc6}
-      \strng{authorfullhashraw}{765035e247418e0e0e36bf984a8f3fc6}
-      \field{sortinit}{6}
-      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
+      \strng{namehash}{3d5875a2890550ef236660822a299231}
+      \strng{fullhash}{3d5875a2890550ef236660822a299231}
+      \strng{fullhashraw}{3d5875a2890550ef236660822a299231}
+      \strng{bibnamehash}{3d5875a2890550ef236660822a299231}
+      \strng{authorbibnamehash}{3d5875a2890550ef236660822a299231}
+      \strng{authornamehash}{3d5875a2890550ef236660822a299231}
+      \strng{authorfullhash}{3d5875a2890550ef236660822a299231}
+      \strng{authorfullhashraw}{3d5875a2890550ef236660822a299231}
+      \field{sortinit}{7}
+      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{issn}{1361-6382}
-      \field{journaltitle}{Classical and Quantum Gravity}
-      \field{number}{17}
-      \field{title}{Properties of the magnetic Universe with positive cosmological constant}
-      \field{volume}{42}
-      \field{year}{2025}
-      \field{pages}{177001}
-      \range{pages}{1}
+      \field{title}{Topology Optimization: Theory, Methods, and Applications}
+      \field{year}{2003}
       \verb{doi}
-      \verb 10.1088/1361-6382/adfc1d
+      \verb 10.1007/978-3-662-05086-6
       \endverb
-      \verb{urlraw}
-      \verb http://dx.doi.org/10.1088/1361-6382/adfc1d
-      \endverb
-      \verb{url}
-      \verb http://dx.doi.org/10.1088/1361-6382/adfc1d
+    \endentry
+    \entry{sigmund2001}{article}{}{}
+      \name{author}{1}{}{%
+        {{hash=d76f1c09e8d8d06e1b7c3c254efeae1a}{%
+           family={Sigmund},
+           familyi={S\bibinitperiod},
+           given={Ole},
+           giveni={O\bibinitperiod}}}%
+      }
+      \strng{namehash}{d76f1c09e8d8d06e1b7c3c254efeae1a}
+      \strng{fullhash}{d76f1c09e8d8d06e1b7c3c254efeae1a}
+      \strng{fullhashraw}{d76f1c09e8d8d06e1b7c3c254efeae1a}
+      \strng{bibnamehash}{d76f1c09e8d8d06e1b7c3c254efeae1a}
+      \strng{authorbibnamehash}{d76f1c09e8d8d06e1b7c3c254efeae1a}
+      \strng{authornamehash}{d76f1c09e8d8d06e1b7c3c254efeae1a}
+      \strng{authorfullhash}{d76f1c09e8d8d06e1b7c3c254efeae1a}
+      \strng{authorfullhashraw}{d76f1c09e8d8d06e1b7c3c254efeae1a}
+      \field{sortinit}{7}
+      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Structural and Multidisciplinary Optimization}
+      \field{number}{2}
+      \field{title}{A 99 Line Topology Optimization Code Written in {Matlab}}
+      \field{volume}{21}
+      \field{year}{2001}
+      \field{pages}{120\bibrangedash 127}
+      \range{pages}{8}
+      \verb{doi}
+      \verb 10.1007/s001580050176
       \endverb
     \endentry
     \entry{andreassen2011}{article}{}{}
@@ -400,6 +266,7 @@
       \endverb
     \endentry
   \enddatalist
+  \missing{zhao2023topology}
 \endrefsection
 \endinput
 

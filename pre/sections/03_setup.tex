@@ -124,38 +124,80 @@
   \end{columns}
 \end{frame}
 
-\begin{frame}{Experimental Setup --- Overview}
+\begin{frame}{Experimental Setup}
   \centering
-  % Schematic of testing platformm
-    \includegraphics[width=1.05\textwidth]{figs/setup_demo.jpg}
+  \begin{tikzpicture}
+    \node[anchor=south west, inner sep=0] (setupimg) at (0,0)
+      {\includegraphics[width=0.98\textwidth, trim={0 520 0 40}, clip]{figs/setup_demo.jpg}};
+    \fill[white] ([yshift=0.0cm]setupimg.south west)
+      rectangle ([yshift=0.82cm]setupimg.south east);
+  \end{tikzpicture}
+
+  \vspace{0.55em}
+  \footnotesize
+  \begin{tabularx}{0.97\textwidth}{@{}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X@{}}
+    \textbf{Specimen:} planar spring structure clamped at one end &
+    \textbf{Force sensor:} records applied load $F(t)$ during compression &
+    \textbf{Motion sensor + DAQ:} records displacement $x(t)$ and synchronises acquisition
+  \end{tabularx}
 \end{frame}
 
-\begin{frame}{Experimental Setup --- Overview}
-    \begin{itemize}
-       \item \textbf{Workflow:} Quasi-static compression $\rightarrow$ Time-synced $F(t) \& x(t)$ acquisition $\rightarrow$ $F-x$ relationship transformation for energy evaluation.
-        \item \textbf{Loading Method:} Quasi-static manual pushing.
-        \item \textbf{Data Acquisition:} 
-        \begin{itemize}
-            \item Displacement $x(t)$ recorded by Motion Sensor.
-            \item Applied Force $F(t)$ recorded by Force Sensor.
-        \end{itemize}
-        
-      
-        \item \textbf{Stability:} High linearity in $x(t)$ indicates steady manual loading.
-    \end{itemize}
-\end{frame}
-
-\begin{frame}{Apparatus \& Materials}
+\begin{frame}{Measurement Workflow}
   \small
+  \centering
+  \begin{tikzpicture}[
+    node distance=0.55cm and 0.5cm,
+    >={Latex[length=3mm]},
+    box/.style={
+      draw=gray!55,
+      rounded corners=4pt,
+      fill=blue!7,
+      minimum width=3.0cm,
+      minimum height=2.0cm,
+      align=center,
+      inner sep=5pt,
+      font=\footnotesize
+    }
+  ]
+    \node[box] (load) {Quasi-static\\manual compression\\of specimen};
+    \node[box, right=of load] (sense) {Record synchronized\\$F(t)$ and $x(t)$\\from the sensors};
+    \node[box, right=of sense] (eval) {Convert to $F$--$x$\\and integrate area for\\$E_{\text{in}}$, $E_{\text{out}}$, $\eta$};
+
+    \draw[->, thick] (load) -- (sense);
+    \draw[->, thick] (sense) -- (eval);
+  \end{tikzpicture}
+
+  \vspace{0.9em}
   \begin{itemize}\setlength\itemsep{3pt}
-    \item \textbf{Platform:} Hand wheel + lead screw compression rig (custom-built)
-    \item \textbf{Force measurement:} Digital gauge, 0--50\,N, 0.1\,N resolution
-    \item \textbf{Displacement:} Digital calliper, $\pm 0.01$\,mm
-    \item \textbf{Material:} PLA filament (1.75\,mm), FDM 3D printing
-    \item \textbf{Software:} GNU Octave, FreeCAD, Python
-    \item \textbf{Environment:} Room temperature ($\sim\!25\,{}^{\circ}\mathrm{C}$)
-    \item \textbf{Material:} 3D printed PETG (1.75\,mm); chosen for its superior toughness and interlayer adhesion compared to PLA, ensuring structural integrity during large deformations.
+    \item \textbf{Loading method:} hand-wheel actuation with steady manual input.
+    \item \textbf{Quality check:} near-linear $x(t)$ confirms a stable quasi-static loading rate.
+    \item \textbf{Output:} force--displacement curves used to compare energy storage and release behaviour.
   \end{itemize}
+\end{frame}
+
+\begin{frame}{Apparatus \& Test Conditions}
+  \small
+  \begin{columns}[T,onlytextwidth]
+    \column{0.49\textwidth}
+    \textbf{Rig \& sensing}
+    \begin{itemize}\setlength\itemsep{3pt}
+      \item Custom hand wheel + lead screw compression rig
+      \item Linear guide rail and pushing plate
+      \item Force sensor for applied load $F(t)$
+      \item Motion sensor for displacement $x(t)$
+      \item One-end clamped boundary condition
+    \end{itemize}
+
+    \column{0.49\textwidth}
+    \textbf{Specimens \& analysis}
+    \begin{itemize}\setlength\itemsep{3pt}
+      \item FDM-printed PETG planar test structures
+      \item Fixed footprint and equal-thickness specimens
+      \item GNU Octave, FreeCAD, and Python for design / analysis
+      \item Room temperature ($\sim\!25\,{}^{\circ}\mathrm{C}$)
+      \item Quasi-static manual loading for force--displacement evaluation
+    \end{itemize}
+  \end{columns}
 \end{frame}
 
 \begin{frame}{Candidate Structures}

@@ -107,82 +107,84 @@
     %  -- shows planarity, footprint constraint, and elastic deflection
     % ----------------------------------------------------------------
     \begin{tikzpicture}[
-      scale=0.48,
+      scale=0.56,
       every node/.style={font=\tiny},
       line cap=round,
       line join=round
     ]
       % Footprint envelope
-      \fill[gray!5, rounded corners=2pt] (-0.35,-0.50) rectangle (4.95,3.60);
-      \draw[gray!55, semithick, dashed, rounded corners=2pt]
+      \fill[gray!4, rounded corners=2pt] (-0.35,-0.50) rectangle (4.95,3.60);
+      \draw[gray!50, semithick, dashed, rounded corners=2pt]
         (-0.35,-0.50) rectangle (4.95,3.60);
-      \node[gray!65, anchor=south east] at (4.90,-0.50) {planar footprint};
+      \node[gray!62, anchor=south east] at (4.90,-0.50) {planar footprint};
 
       % Fixed support pads
-      \fill[gray!48, rounded corners=1pt] (0.05,0.08) rectangle (0.62,0.34);
-      \fill[gray!48, rounded corners=1pt] (3.98,0.08) rectangle (4.55,0.34);
-      \foreach \x in {0.08,0.26,0.44}
-        \draw[gray!70, thin] (\x,0.08) -- ++(-0.16,-0.20);
-      \foreach \x in {4.01,4.19,4.37}
-        \draw[gray!70, thin] (\x,0.08) -- ++(-0.16,-0.20);
+      \fill[gray!52, rounded corners=1pt] (0.06,0.08) rectangle (0.66,0.34);
+      \fill[gray!52, rounded corners=1pt] (3.74,0.08) rectangle (4.34,0.34);
+      \foreach \x in {0.10,0.28,0.46}
+        \draw[gray!68, thin] (\x,0.08) -- ++(-0.16,-0.20);
+      \foreach \x in {3.78,3.96,4.14}
+        \draw[gray!68, thin] (\x,0.08) -- ++(-0.16,-0.20);
 
       % Reference apex
-      \draw[gray!65, semithick, dashed] (0.55,2.95) -- (1.88,2.95);
-      \draw[gray!65, semithick, dashed] (2.52,2.95) -- (3.85,2.95);
-      \node[gray!75] at (1.08,3.18) {rest apex};
+      \draw[gray!62, semithick, dashed] (0.78,2.95) -- (1.92,2.95);
+      \draw[gray!62, semithick, dashed] (2.48,2.95) -- (3.62,2.95);
+      \node[gray!72] at (1.10,3.19) {rest apex};
 
       % Deformed arch spring
-      \draw[blue!75!black, line width=1.15pt]
-        (0.55,0.34) .. controls (1.15,2.42) and (3.25,2.42) .. (3.85,0.34);
-      \fill[blue!18]
-        (0.55,0.34) .. controls (1.15,2.42) and (3.25,2.42) .. (3.85,0.34)
-        -- (3.85,0.24) -- (0.55,0.24) -- cycle;
+      \fill[blue!17]
+        (0.58,0.34) .. controls (1.18,2.44) and (3.18,2.44) .. (3.78,0.34)
+        -- (3.78,0.24) -- (0.58,0.24) -- cycle;
+      \draw[blue!75!black, line width=1.25pt]
+        (0.58,0.34) .. controls (1.18,2.44) and (3.18,2.44) .. (3.78,0.34);
+      \fill[white, opacity=0.35] (1.45,1.65) ellipse (0.85 and 0.28);
+      \fill[blue!75!black] (2.18,1.91) circle (0.045);
 
       % Central load
-      \draw[-{Latex[length=3mm]}, red!80!black, line width=1.0pt]
-        (2.20,3.28) -- (2.20,1.94);
-      \node[red!80!black, right=2pt] at (2.20,2.63) {$F$};
+      \draw[-{Latex[length=3.4mm]}, red!82!black, line width=1.05pt]
+        (2.18,3.28) -- (2.18,1.98);
+      \node[red!82!black, right=2pt] at (2.18,2.61) {$F$};
 
       % Deflection indicator
-      \draw[gray!55, dotted] (3.28,2.95) -- (4.58,2.95);
-      \draw[gray!55, dotted] (3.28,1.94) -- (4.58,1.94);
-      \draw[<->, green!45!black, semithick] (4.42,2.95) -- (4.42,1.94);
-      \node[green!45!black, right=2pt] at (4.42,2.44) {$\delta$};
+      \draw[gray!52, dotted] (3.02,2.95) -- (4.58,2.95);
+      \draw[gray!52, dotted] (3.02,1.94) -- (4.58,1.94);
+      \draw[<->, green!45!black, semithick] (4.40,2.95) -- (4.40,1.94);
+      \node[green!45!black, right=2pt] at (4.40,2.44) {$\delta$};
     \end{tikzpicture}
 
-    \vspace{1.5em}
+    \vspace{2.2em}
 
     % ----------------------------------------------------------------
     % Bottom diagram: F-delta loading curve, area = E_in
     %  -- visualises the integral in the eta formula on the slide
     % ----------------------------------------------------------------
     \begin{tikzpicture}[
-      scale=0.43,
+      scale=0.50,
       every node/.style={font=\tiny},
       line cap=round,
       line join=round
     ]
       % Energy input area
       \fill[blue!16]
-        (0,0) .. controls (1.00,0.26) and (2.55,1.48) .. (3.65,2.72)
-        -- (3.65,0) -- cycle;
+        (0,0) .. controls (0.92,0.23) and (2.48,1.44) .. (3.68,2.78)
+        -- (3.68,0) -- cycle;
 
       % Axes
-      \draw[-{Latex[length=2.6mm]}, thick] (0,0) -- (4.35,0) node[right] {$\delta$};
-      \draw[-{Latex[length=2.6mm]}, thick] (0,0) -- (0,3.20) node[above] {$F$};
+      \draw[-{Latex[length=2.8mm]}, thick] (0,0) -- (4.45,0) node[right] {$\delta$};
+      \draw[-{Latex[length=2.8mm]}, thick] (0,0) -- (0,3.35) node[above] {$F$};
 
       % Loading response
-      \draw[blue!75!black, line width=1.15pt]
-        (0,0) .. controls (1.00,0.26) and (2.55,1.48) .. (3.65,2.72);
+      \draw[blue!75!black, line width=1.25pt]
+        (0,0) .. controls (0.92,0.23) and (2.48,1.44) .. (3.68,2.78);
 
       % Construction lines
-      \draw[gray!55, dashed] (3.65,2.72) -- (3.65,0);
-      \draw[gray!55, dashed] (3.65,2.72) -- (0,2.72);
-      \node[below] at (3.65,0) {$\delta_{\max}$};
-      \node[left] at (0,2.72) {$F_{\max}$};
+      \draw[gray!52, dashed] (3.68,2.78) -- (3.68,0);
+      \draw[gray!52, dashed] (3.68,2.78) -- (0,2.78);
+      \node[below] at (3.68,0) {$\delta_{\max}$};
+      \node[left] at (0,2.78) {$F_{\max}$};
 
       % Area label
-      \node[blue!60!black, font=\scriptsize] at (2.42,0.88) {$E_{\text{in}}$};
+      \node[blue!65!black, font=\scriptsize] at (2.40,0.92) {$E_{\text{in}}$};
     \end{tikzpicture}
   \end{columns}
 \end{frame}
