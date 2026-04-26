@@ -30,54 +30,25 @@
   \end{itemize}
 \end{frame}
 
-
 \begin{frame}{Experimental Setup --- Overview}
   \centering
-  % Schematic of testing platform
-  \begin{tikzpicture}[scale=0.65, every node/.style={font=\scriptsize},
-      block/.style={draw, thick, fill=blue!10, minimum width=1.8cm,
-                    minimum height=0.8cm, align=center, rounded corners=2pt}]
+  % Schematic of testing platformm
+    \includegraphics[width=1.05\textwidth]{figs/setup_demo.jpg}
+\end{frame}
 
-    % Base plate
-    \draw[thick, fill=gray!15] (0,0) rectangle (10,0.4);
-    \node[below,font=\tiny] at (5,0) {Base plate};
-
-    % Fixed support
-    \draw[thick, fill=gray!40] (1,0.4) rectangle (1.6,2.5);
-    \node[rotate=90, font=\tiny] at (1.3,1.5) {Fixed clamp};
-
-    % Sample
-    \draw[thick, blue, decorate, decoration={zigzag, segment length=4mm, amplitude=2mm}]
-      (1.6,1.5) -- (5,1.5);
-    \node[above, blue] at (3.3,1.8) {Sample};
-
-    % Moving clamp
-    \draw[thick, fill=gray!40] (5,0.4) rectangle (5.6,2.5);
-    \node[rotate=90, font=\tiny] at (5.3,1.5) {Clamp};
-
-    % Lead screw
-    \draw[thick] (5.6,1.5) -- (8.5,1.5);
-    \draw[thick, fill=yellow!30] (8.5,0.8) rectangle (9.5,2.2);
-    \node[font=\tiny, align=center] at (9,1.5) {Hand\\wheel};
-    \node[above, font=\tiny] at (7,1.6) {Lead screw};
-
-    % Force sensor
-    \draw[thick, fill=green!20] (5,2.6) rectangle (6.5,3.2);
-    \node[font=\tiny] at (5.75,2.9) {Force sensor};
-    \draw[->] (5.3,2.5) -- (5.3,2.6);
-
-    % Displacement indicator
-    \draw[thick, fill=orange!20] (3.5,3) rectangle (5.2,3.6);
-    \node[font=\tiny] at (4.35,3.3) {Encoder / ruler};
-    \draw[->] (5.3,3) -- (5.3,2.5);
-
-    % DAQ
-    \draw[thick, fill=red!10] (7,3) rectangle (9,3.8);
-    \node[font=\tiny] at (8,3.4) {DAQ $\to$ PC};
-    \draw[->, dashed] (6.5,3.1) -- (7,3.2);
-    \draw[->, dashed] (5.2,3.5) -- (7,3.5);
-
-  \end{tikzpicture}
+\begin{frame}{Experimental Setup --- Overview}
+    \begin{itemize}
+       \item \textbf{Workflow:} Quasi-static compression $\rightarrow$ Time-synced $F(t) \& x(t)$ acquisition $\rightarrow$ $F-x$ relationship transformation for energy evaluation.
+        \item \textbf{Loading Method:} Quasi-static manual pushing.
+        \item \textbf{Data Acquisition:} 
+        \begin{itemize}
+            \item Displacement $x(t)$ recorded by Motion Sensor.
+            \item Applied Force $F(t)$ recorded by Force Sensor.
+        \end{itemize}
+        
+      
+        \item \textbf{Stability:} High linearity in $x(t)$ indicates steady manual loading.
+    \end{itemize}
 \end{frame}
 
 \begin{frame}{Apparatus \& Materials}
@@ -89,6 +60,7 @@
     \item \textbf{Material:} PLA filament (1.75\,mm), FDM 3D printing
     \item \textbf{Software:} GNU Octave, FreeCAD, Python
     \item \textbf{Environment:} Room temperature ($\sim\!25\,{}^{\circ}\mathrm{C}$)
+    \item \textbf{Material:} 3D printed PETG (1.75\,mm); chosen for its superior toughness and interlayer adhesion compared to PLA, ensuring structural integrity during large deformations.
   \end{itemize}
 \end{frame}
 
@@ -138,4 +110,9 @@
   \small
   Four manual baselines + 1--2 topology-optimised candidates.
   All share identical footprint, thickness, and boundary conditions.
+  \begin{itemize}
+      \item \textbf{Design space:} 4 manual baselines vs. 1--2 topology-optimized candidates.
+      \item \textbf{Constraints:} Identical footprint ($W \times L$), thickness, and PETG material.
+      \item \textbf{Goal:} To evaluate the influence of geometric topology on energy storage $E$.
+  \end{itemize}
 \end{frame}

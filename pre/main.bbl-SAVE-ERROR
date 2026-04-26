@@ -292,6 +292,62 @@
       \verb 10.1115/1.4056959
       \endverb
     \endentry
+    \entry{Toh_2025}{article}{}{}
+      \name{author}{4}{}{%
+        {{hash=86813bb42be6b8a0a04582adc0bf8fba}{%
+           family={Toh},
+           familyi={T\bibinitperiod},
+           given={Yu-Xuan},
+           giveni={Y\bibinithyphendelim X\bibinitperiod}}}%
+        {{hash=58a3c3a3d723b186c0a63284a9ef4d21}{%
+           family={Chin},
+           familyi={C\bibinitperiod},
+           given={Yun-Ten},
+           giveni={Y\bibinithyphendelim T\bibinitperiod}}}%
+        {{hash=af1617a5755a07172e946af8e7b6643c}{%
+           family={Wu},
+           familyi={W\bibinitperiod},
+           given={Ethan\bibnamedelima Quanrun},
+           giveni={E\bibinitperiod\bibinitdelim Q\bibinitperiod}}}%
+        {{hash=7b7ac73f03fd680d5fc89aed3a8e3c2c}{%
+           family={Lim},
+           familyi={L\bibinitperiod},
+           given={Yen-Kheng},
+           giveni={Y\bibinithyphendelim K\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {IOP Publishing}%
+      }
+      \strng{namehash}{600be46cf16b45cb356658b20476dd91}
+      \strng{fullhash}{765035e247418e0e0e36bf984a8f3fc6}
+      \strng{fullhashraw}{765035e247418e0e0e36bf984a8f3fc6}
+      \strng{bibnamehash}{765035e247418e0e0e36bf984a8f3fc6}
+      \strng{authorbibnamehash}{765035e247418e0e0e36bf984a8f3fc6}
+      \strng{authornamehash}{600be46cf16b45cb356658b20476dd91}
+      \strng{authorfullhash}{765035e247418e0e0e36bf984a8f3fc6}
+      \strng{authorfullhashraw}{765035e247418e0e0e36bf984a8f3fc6}
+      \field{sortinit}{6}
+      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{1361-6382}
+      \field{journaltitle}{Classical and Quantum Gravity}
+      \field{number}{17}
+      \field{title}{Properties of the magnetic Universe with positive cosmological constant}
+      \field{volume}{42}
+      \field{year}{2025}
+      \field{pages}{177001}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.1088/1361-6382/adfc1d
+      \endverb
+      \verb{urlraw}
+      \verb http://dx.doi.org/10.1088/1361-6382/adfc1d
+      \endverb
+      \verb{url}
+      \verb http://dx.doi.org/10.1088/1361-6382/adfc1d
+      \endverb
+    \endentry
     \entry{andreassen2011}{article}{}{}
       \name{author}{5}{}{%
         {{hash=bde89e664977164160a3e7e4a1a9ad34}{%
@@ -328,8 +384,8 @@
       \strng{authornamehash}{40cfd752b323aa59ad144d33abcd31f6}
       \strng{authorfullhash}{937bb03da52c303590edf7abc17e79ff}
       \strng{authorfullhashraw}{937bb03da52c303590edf7abc17e79ff}
-      \field{sortinit}{6}
-      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
+      \field{sortinit}{7}
+      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{Structural and Multidisciplinary Optimization}
