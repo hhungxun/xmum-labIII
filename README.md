@@ -1,51 +1,35 @@
 # PHY211 Lab III
 
-Project structure for Lab III collaboration.
+Lab III collaboration repo for the proposal and supporting notes.
 
 ## Folder Structure
 
-- `proposal/` - LaTeX source for the report.
-- `proposal/sections/` - section files (`01-introduction.tex`, `02-method.tex`, etc.).
-- `proposal/figures/` - plots, screenshots, and exported images used by the report.
-- `3d-models/` - CAD and simulation models (`.stl`, `.step`, `.obj`, etc.).
-- `papers/` - reference papers, datasheets, and supporting reading material.
-- `meetings` - meeting notes
+- `pre/` - main LaTeX workspace for the proposal.
+- `pre/sections/` - proposal section files.
+- `pre/figs/` - images used by the proposal.
+- `proposal_draft/` - older draft workspace kept for reference.
+- `papers/` - reference papers and reading material.
+- `meetings/` - meeting and class notes.
 
-## Naming Convention
+## Repo Hygiene
 
-Use lowercase `kebab-case` for files and folders.
+- Commit source files, notes, figures, and references.
+- Do not commit LaTeX build artifacts such as `.aux`, `.bbl`, `.bcf`, `.log`, `.run.xml`, or compiled workspace PDFs.
+- Keep generated PDFs in `papers/` only when they are source/reference material rather than build output.
 
-Examples:
-- `latex/sections/03-results.tex`
-- `latex/figures/setup-diagram.png`
-- `3d-models/coil-holder-v2.step`
-- `papers/hall-effect-sensor-datasheet.pdf`
+## Workflow
 
+1. `git pull origin main`
+2. Make the required changes
+3. Commit and push
 
-# Lab III 协作项目结构
+## 中文说明
 
-## 文件夹结构
+- `pre/` - 提案的主要 LaTeX 工作目录。
+- `pre/sections/` - 各章节内容。
+- `pre/figs/` - 提案中使用的图片。
+- `proposal_draft/` - 保留作参考的旧草稿目录。
+- `papers/` - 参考论文与资料。
+- `meetings/` - 会议或课堂记录。
 
-- `proposal/` - 报告的 LaTeX 源文件。
-- `proposal/main.tex` - 报告的主入口文件。
-- `proposal/sections/` - 各章节文件（例如 `01-introduction.tex`、`02-method.tex` 等）。
-- `latex/figures/` - 报告中使用的图表、截图和导出的图片。
-- `3d-models/` - CAD 与模拟模型（如 `.stl`、`.step`、`.obj` 等）。
-- `papers/` - 参考论文、数据表（datasheet）和辅助阅读材料。
-- `meetings/` - 会议/课堂上的会议。
-
-## 命名规范
-
-文件和文件夹统一使用小写的 `kebab-case` 命名方式。
-
-示例：
-- `latex/sections/03-results.tex`
-- `latex/figures/setup-diagram.png`
-- `3d-models/coil-holder-v2.step`
-- `papers/hall-effect-sensor-datasheet.pdf`
-
-
-## 工作流
-  1. `git pull origin main` 确保自己和main同步
-  2. 进行修改（你要的修改）
-  3. Commit and Push
+仓库只保留源码、图片、笔记和参考资料，不提交 LaTeX 编译产生的中间文件和工作目录 PDF。

@@ -2,89 +2,256 @@
 %  SECTION 1 — BACKGROUND & MOTIVATION
 % ============================================================
 
-\begin{frame}{Background: Elastic Energy Storage}
+% ------------------------------------------------------------
+%  Frame 1 — Compliant vs Traditional Mechanisms
+% ------------------------------------------------------------
+\begin{frame}{Compliant vs.\ Traditional Mechanisms}
+  \small
   \begin{columns}[T]
-    \column{0.55\textwidth}
-    \begin{itemize}
-      \item Planar elastic structures store energy through
-            reversible deformation under load.
-      \item Applications: compliant mechanisms, MEMS actuators,
-            soft robotic grippers, mechanical springs
-            \cite{howell2001}.
-      \item Key metric: \textbf{energy storage efficiency}
+    \column{0.48\textwidth}
+    \textbf{Traditional (rigid-body)}
+    \begin{itemize}\setlength\itemsep{2pt}
+      \item Rigid links + discrete joints (pin, slider, bearing)
+      \item Motion from assembled kinematic pairs
+      \item Friction, backlash, wear; needs lubrication
+      \item Multi-part assembly; energy stored externally
+            (coil spring, torsion bar)
+    \end{itemize}
+
+    \column{0.48\textwidth}
+    \textbf{Compliant (flexure-based)}
+    \begin{itemize}\setlength\itemsep{2pt}
+      \item Single monolithic part; motion = elastic deformation
+            \cite{howell2001}
+      \item No sliding contacts $\Rightarrow$ no friction or wear
+      \item Backlash-free, miniaturisable to MEMS
+            \cite{zhu2020compliant}
+      \item Energy stored \emph{in} the structure itself
+    \end{itemize}
+  \end{columns}
+
+  \vspace{0.5em}
+  \centering
+  \begin{tikzpicture}[scale=0.55, every node/.style={font=\tiny}]
+    % --- Traditional: 4-bar linkage ---
+    \begin{scope}
+      \draw[thick] (0,0) -- (0.6,1.4) -- (2.4,1.4) -- (3.0,0);
+      \foreach \p in {(0,0),(3.0,0),(0.6,1.4),(2.4,1.4)}
+        \draw[fill=white,thick] \p circle (0.10);
+      \draw[thick] (-0.3,0) -- (3.3,0);
+      \foreach \x in {-0.2,0.0,...,3.2}
+        \draw[thin] (\x,0) -- (\x-0.15,-0.20);
+      \node[below=6pt] at (1.5,-0.3) {Pin-jointed linkage};
+    \end{scope}
+    % --- Compliant: cross-axis flexure pivot ---
+    \begin{scope}[xshift=5cm]
+      \fill[blue!18] (0.0,0.05) rectangle (0.40,1.40);
+      \fill[blue!18] (2.60,0.05) rectangle (3.00,1.40);
+      \draw[very thick, blue] (0.40,0.25) -- (2.60,1.20);
+      \draw[very thick, blue] (0.40,1.20) -- (2.60,0.25);
+      \draw[thick] (-0.3,0) -- (3.3,0);
+      \foreach \x in {-0.2,0.0,...,3.2}
+        \draw[thin] (\x,0) -- (\x-0.15,-0.20);
+      \node[below=6pt] at (1.5,-0.3) {Compliant flexure pivot};
+    \end{scope}
+  \end{tikzpicture}
+\end{frame}
+
+\note{%
+  \begin{itemize}
+    \item Frame the contrast first: traditional machine design = rigid
+          parts + joints; compliant design = one elastic body.
+    \item Traditional: friction at every joint, backlash from
+          tolerances, parts wear; energy stored in a separate spring.
+    \item Compliant: motion comes from bending the material itself,
+          so no sliding contact, no lubrication, no wear.
+    \item Practical wins: single-piece $\Rightarrow$ cheap to 3D-print;
+          no clearance $\Rightarrow$ MEMS-scale possible; energy is
+          stored \emph{inside} the structure rather than in an
+          attached spring.
+    \item Cost: design space is harder --- stiffness, range of motion,
+          stress concentration all coupled. That coupling is exactly
+          what topology choice (this project) controls.
+  \end{itemize}
+}
+
+
+% ------------------------------------------------------------
+%  Frame 2 — Planar Elastic Energy Storage
+% ------------------------------------------------------------
+\begin{frame}{Background: Planar Elastic Energy Storage}
+  \small
+  \begin{columns}[T]
+    \column{0.56\textwidth}
+    \begin{itemize}\setlength\itemsep{3pt}
+      \item Compliant flexures store and release energy via
+            reversible elastic deformation \cite{howell2001}.
+      \item Applications: MEMS actuators, soft grippers, watch
+            springs, miniature energy harvesters
+            \cite{zhu2020compliant}.
+      \item Often confined to thin planar footprints
+            (PCB-mounted, wearable, additively manufactured)
+            \cite{tong2023spring}.
+      \item Key metric --- \textbf{energy storage efficiency}:
             \[
               \eta = \frac{E_{\text{out}}}{E_{\text{in}}}
-              = \frac{\int F_{\text{out}}\,\dd{x}}
-                     {\int F_{\text{in}}\,\dd{x}}
+                   = \frac{\int F_{\text{out}}\,\dd{x}}
+                          {\int F_{\text{in}}\,\dd{x}}
             \]
     \end{itemize}
 
     \column{0.42\textwidth}
-    % Conceptual figure: elastic beam stores energy
     \centering
-    \begin{tikzpicture}[scale=0.55, every node/.style={font=\scriptsize}]
-      % Undeformed
-      \draw[thick] (0,0) -- (0,3);
-      \draw[fill=gray!30] (-0.3,0) rectangle (0.3,0.15);
-      \node[below] at (0,-0.1) {Fixed};
-      \draw[->,red,thick] (0.4,3) -- (1.2,3) node[right]{$F$};
-      \node[above] at (0,3.1) {A};
+    % ----------------------------------------------------------------
+    % Top diagram: planar arch ("bow") spring inside fixed footprint
+    %  -- shows planarity, footprint constraint, and elastic deflection
+    % ----------------------------------------------------------------
+    \begin{tikzpicture}[
+      scale=0.56,
+      every node/.style={font=\tiny},
+      line cap=round,
+      line join=round
+    ]
+      % Footprint envelope
+      \fill[gray!4, rounded corners=2pt] (-0.35,-0.50) rectangle (4.95,3.60);
+      \draw[gray!50, semithick, dashed, rounded corners=2pt]
+        (-0.35,-0.50) rectangle (4.95,3.60);
+      \node[gray!62, anchor=south east] at (4.90,-0.50) {planar footprint};
 
-      % Arrow
-      \draw[->,very thick] (1.8,1.5) -- (2.6,1.5);
+      % Fixed support pads
+      \fill[gray!52, rounded corners=1pt] (0.06,0.08) rectangle (0.66,0.34);
+      \fill[gray!52, rounded corners=1pt] (3.74,0.08) rectangle (4.34,0.34);
+      \foreach \x in {0.10,0.28,0.46}
+        \draw[gray!68, thin] (\x,0.08) -- ++(-0.16,-0.20);
+      \foreach \x in {3.78,3.96,4.14}
+        \draw[gray!68, thin] (\x,0.08) -- ++(-0.16,-0.20);
 
-      % Deformed
-      \draw[thick, blue] (3.5,0) .. controls (3.5,1.2) and (4.2,2.2) .. (4.5,3);
-      \draw[fill=gray!30] (3.2,0) rectangle (3.8,0.15);
-      \node[below] at (3.5,-0.1) {Fixed};
-      \draw[->,red,thick] (4.6,3) -- (5.4,3) node[right]{$F$};
-      \node[above] at (4.5,3.1) {A'};
-      \draw[<->,green!60!black] (3.5,2.8) -- (4.5,2.8)
-            node[midway,above]{$\delta$};
+      % Reference apex
+      \draw[gray!62, semithick, dashed] (0.78,2.95) -- (1.92,2.95);
+      \draw[gray!62, semithick, dashed] (2.48,2.95) -- (3.62,2.95);
+      \node[gray!72] at (1.10,3.19) {rest apex};
+
+      % Deformed arch spring
+      \fill[blue!17]
+        (0.58,0.34) .. controls (1.18,2.44) and (3.18,2.44) .. (3.78,0.34)
+        -- (3.78,0.24) -- (0.58,0.24) -- cycle;
+      \draw[blue!75!black, line width=1.25pt]
+        (0.58,0.34) .. controls (1.18,2.44) and (3.18,2.44) .. (3.78,0.34);
+      \fill[white, opacity=0.35] (1.45,1.65) ellipse (0.85 and 0.28);
+      \fill[blue!75!black] (2.18,1.91) circle (0.045);
+
+      % Central load
+      \draw[-{Latex[length=3.4mm]}, red!82!black, line width=1.05pt]
+        (2.18,3.28) -- (2.18,1.98);
+      \node[red!82!black, right=2pt] at (2.18,2.61) {$F$};
+
+      % Deflection indicator
+      \draw[gray!52, dotted] (3.02,2.95) -- (4.58,2.95);
+      \draw[gray!52, dotted] (3.02,1.94) -- (4.58,1.94);
+      \draw[<->, green!45!black, semithick] (4.40,2.95) -- (4.40,1.94);
+      \node[green!45!black, right=2pt] at (4.40,2.44) {$\delta$};
+    \end{tikzpicture}
+
+    \vspace{2.2em}
+
+    % ----------------------------------------------------------------
+    % Bottom diagram: F-delta loading curve, area = E_in
+    %  -- visualises the integral in the eta formula on the slide
+    % ----------------------------------------------------------------
+    \begin{tikzpicture}[
+      scale=0.50,
+      every node/.style={font=\tiny},
+      line cap=round,
+      line join=round
+    ]
+      % Energy input area
+      \fill[blue!16]
+        (0,0) .. controls (0.92,0.23) and (2.48,1.44) .. (3.68,2.78)
+        -- (3.68,0) -- cycle;
+
+      % Axes
+      \draw[-{Latex[length=2.8mm]}, thick] (0,0) -- (4.45,0) node[right] {$\delta$};
+      \draw[-{Latex[length=2.8mm]}, thick] (0,0) -- (0,3.35) node[above] {$F$};
+
+      % Loading response
+      \draw[blue!75!black, line width=1.25pt]
+        (0,0) .. controls (0.92,0.23) and (2.48,1.44) .. (3.68,2.78);
+
+      % Construction lines
+      \draw[gray!52, dashed] (3.68,2.78) -- (3.68,0);
+      \draw[gray!52, dashed] (3.68,2.78) -- (0,2.78);
+      \node[below] at (3.68,0) {$\delta_{\max}$};
+      \node[left] at (0,2.78) {$F_{\max}$};
+
+      % Area label
+      \node[blue!65!black, font=\scriptsize] at (2.40,0.92) {$E_{\text{in}}$};
     \end{tikzpicture}
   \end{columns}
 \end{frame}
 
-\begin{frame}{Topology Optimization for Structures}
-  \small
-  \begin{columns}[T]
-    \column{0.58\textwidth}
-    \begin{itemize}\setlength\itemsep{2pt}
-      \item \textbf{Topology optimization}: find optimal material
-            layout in a fixed domain \cite{bendsoe2003topology}.
-      \item SIMP method: density $\rho_e \in [0,1]$ per element
-            \cite{sigmund2001}.
-      \item Applied in aerospace, automotive, biomedical
-            \cite{liu2018topology}.
-      \item \textbf{Gap:} few studies experimentally validate
-            topology-optimised planar energy-storing structures
-            \cite{zhu2020compliant, tong2023spring}.
-    \end{itemize}
+\note{%
+  \begin{itemize}
+    \item Zoom in on energy storage. Flexure deforms reversibly;
+          stored elastic energy released on unload.
+    \item Application list emphasises why \emph{planar} matters:
+          PCBs, wearables, FDM-printed parts are locked to a shallow
+          box --- same constraint we use later
+          (100$\times$100$\times$3 mm).
+    \item \textbf{Top figure:} planar arch (``bow'') spring inside a
+          dashed footprint box. Central load $F$ pushes the arch down
+          by $\delta$. Picks up planarity + footprint constraint
+          + elastic deflection in one image.
+    \item \textbf{Bottom figure:} $F(\delta)$ loading curve. Shaded
+          area $= E_{\text{in}} = \int F\,\dd\delta$, the integral on
+          the slide.
+    \item $E_{\text{out}}$ is the analogous area under the
+          \emph{unloading} branch (omitted here for clarity); the
+          gap between the two = hysteresis loss. Steady-state $\eta$
+          reported (first cycle discarded for PLA Mullins effect).
+    \item Same quantity is called \emph{round-trip efficiency} in
+          battery / flywheel literature; \emph{loss factor}
+          ($\tan\delta$) in viscoelasticity. Same physics.
+  \end{itemize}
+}
 
-    \column{0.40\textwidth}
-    \centering
-    \begin{tikzpicture}[scale=0.35, every node/.style={font=\tiny}]
-      % Design domain
-      \draw[thick] (0,0) rectangle (4,3);
-      \foreach \x in {0,0.67,...,3.5}{
-        \foreach \y in {0,0.75,...,2.5}{
-          \fill[gray!20] (\x+0.05,\y+0.05) rectangle (\x+0.58,\y+0.62);
-        }
-      }
-      \node[below] at (2,-0.2) {Design domain};
-      \draw[fill=black!60] (-0.15,0) rectangle (0,3);
-      \node[left] at (-0.15,1.5) {Fixed};
-      \draw[->,red,thick] (4,1.5) -- (4.8,1.5) node[right]{$F$};
 
-      \draw[->,very thick] (2,-0.5) -- (2,-1.0);
-
-      \begin{scope}[yshift=-3.8cm]
-        \draw[thick,dashed] (0,0) rectangle (4,3);
-        \fill[blue!40] (0,2.2) -- (1.5,2.8) -- (3,2) -- (4,1.5)
-                        -- (3,1) -- (1.5,0.2) -- (0,0.8) -- cycle;
-        \fill[blue!40] (0,1.2) -- (1,1.5) -- (2,1.5) -- (0,1.8) -- cycle;
-        \node[below] at (2,-0.2) {Optimised};
-      \end{scope}
-    \end{tikzpicture}
-  \end{columns}
+% ------------------------------------------------------------
+%  Frame 3 — Motivation & Research Gap
+% ------------------------------------------------------------
+\begin{frame}{Motivation \& Research Gap}
+  \begin{itemize}\setlength\itemsep{3pt}
+    \item Within a fixed planar footprint, geometry dictates the load
+          path and strain distribution, hence the stored elastic
+          energy at a given material volume \cite{howell2001}.
+    \item Folded / serpentine layouts lengthen the effective beam
+          inside the same area, distributing strain more uniformly
+          and delaying yield at the maximum-stress fibre.
+    \item Topology optimisation (SIMP) generates non-intuitive
+          material layouts that minimise compliance under a volume
+          constraint
+          \cite{bendsoe2003topology, sigmund2001, andreassen2011}.
+    \item \textbf{Gap:} experimental comparisons of fold count and
+          pattern family at \emph{equal volume} and \emph{equal
+          footprint} are scarce; most topology-optimised planar
+          springs are reported only numerically
+          \cite{tong2023spring, zhu2020compliant}.
+  \end{itemize}
 \end{frame}
+
+\note{%
+  \begin{itemize}
+    \item Punchline: at fixed footprint and fixed material, geometry
+          alone moves $\eta$ --- because it changes where the strain
+          concentrates.
+    \item Folded / serpentine = more beam length stuffed in the same
+          box $\Rightarrow$ strain spread along longer fibre
+          $\Rightarrow$ higher elastic capacity before yield.
+    \item SIMP (Bendsøe--Sigmund) lets the algorithm decide where
+          material lives. Methodology slide will give the math; here
+          we just flag it as the second design path.
+    \item Gap framing: most planar-spring topology-optimisation
+          papers stop at simulation; few compare against hand-designed
+          baselines under matched volume + footprint. This is the
+          niche the project occupies.
+  \end{itemize}
+}
