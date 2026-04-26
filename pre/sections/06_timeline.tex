@@ -1,27 +1,14 @@
 % ============================================================
 %  SECTION 6 — PROJECT TIMELINE (Gantt chart)
-%
-%  HOW TO CUSTOMISE
-%  ─────────────────
-%  1. Set \WeekStart and \WeekEnd (inclusive).
-%  2. Edit \TaskList: each entry is {Row label}{x_start}{x_end}{fill colour}.
-%     x values are (absolute_week - \WeekStart), zero-indexed.
-%  3. \numTasks must equal the number of entries in \TaskList.
-%
-%  EXAMPLE  (weeks 5–15, 11 columns):
-%    \WeekStart = 5,  \WeekEnd = 15
-%    Task "Build apparatus" runs weeks 5–7  →  x_start=0, x_end=3
-%    Task "Data collection" runs weeks 8–10 →  x_start=3, x_end=6
 % ============================================================
 
 \begin{frame}{Project Timeline}
 \centering
 \scriptsize
 
-% ---- USER-EDITABLE PARAMETERS ----
-\def\WeekStart{5}    % TODO: first week number shown
-\def\WeekEnd{15}     % TODO: last  week number shown
-\def\numTasks{6}     % TODO: must match number of tasks below
+\def\WeekStart{5}
+\def\WeekEnd{15}
+\def\numTasks{7}
 
 \begin{tikzpicture}[x=0.6cm, y=0.8cm]
 
@@ -42,36 +29,42 @@
   }
   \draw[black,thick] (0,1) rectangle (\numCols,\topRow);
 
-  % ---- WEEK LABELS (generated from \WeekStart and \WeekEnd) ----
+  % ---- WEEK LABELS ----
   \pgfmathtruncatemacro{\lastIdx}{\numCols-1}
   \foreach \idx in {0,...,\lastIdx}{
     \pgfmathtruncatemacro{\wnum}{\WeekStart+\idx}
     \node[wlbl] at (\idx+0.5,\topRow+0.2) {\wnum};
   }
 
-  % ---- TASK LABELS & BARS ----
-  % Format: \draw[bar,fill=<colour>] (x0,row) rectangle (x1,row+1);
-  %         \node[lbl] at (-0.4,row+0.5) {Label};
-  % Rows count from bottom (1) to top (\numTasks).
+  % ---- TASKS (top to bottom: row 7 down to row 1) ----
 
-  % TODO: replace each row with your task
-  \node[lbl] at (-0.4,6.5) {TODO: Task 1};
-  \draw[bar,fill=cyan!50]          (0,6) rectangle (2,7);   % weeks start..start+2
+  % Row 7: Literature review & proposal
+  \node[lbl] at (-0.4,7.5) {Literature \& proposal};
+  \draw[bar,fill=cyan!50] (0,7) rectangle (3,8);       % wk 5--7
 
-  \node[lbl] at (-0.4,5.5) {TODO: Task 2};
-  \draw[bar,fill=green!45]         (0,5) rectangle (3,6);
+  % Row 6: Topology optimisation code
+  \node[lbl] at (-0.4,6.5) {Topology optimisation};
+  \draw[bar,fill=green!45] (1,6) rectangle (5,7);      % wk 6--9
 
-  \node[lbl] at (-0.4,4.5) {TODO: Task 3};
-  \draw[bar,fill=blue!55]          (3,4) rectangle (6,5);
+  % Row 5: CAD modelling
+  \node[lbl] at (-0.4,5.5) {CAD \& baseline design};
+  \draw[bar,fill=blue!45] (2,5) rectangle (5,6);       % wk 7--9
 
-  \node[lbl] at (-0.4,3.5) {TODO: Task 4};
-  \draw[bar,fill=yellow!70!orange] (4,3) rectangle (8,4);
+  % Row 4: 3D printing
+  \node[lbl] at (-0.4,4.5) {3D printing};
+  \draw[bar,fill=yellow!70!orange] (4,4) rectangle (7,5); % wk 9--11
 
-  \node[lbl] at (-0.4,2.5) {TODO: Task 5};
-  \draw[bar,fill=violet!60]        (1,2) rectangle (9,3);
+  % Row 3: Platform build & calibration
+  \node[lbl] at (-0.4,3.5) {Platform build};
+  \draw[bar,fill=teal!50] (3,3) rectangle (7,4);       % wk 8--11
 
-  \node[lbl] at (-0.4,1.5) {TODO: Task 6};
-  \draw[bar,fill=red!60]           (8,1) rectangle (11,2);
+  % Row 2: Testing & data collection
+  \node[lbl] at (-0.4,2.5) {Testing \& data};
+  \draw[bar,fill=violet!60] (6,2) rectangle (9,3);     % wk 11--13
+
+  % Row 1: Analysis & report
+  \node[lbl] at (-0.4,1.5) {Analysis \& report};
+  \draw[bar,fill=red!60] (8,1) rectangle (11,2);       % wk 13--15
 
 \end{tikzpicture}
 \end{frame}
