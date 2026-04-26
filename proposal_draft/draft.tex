@@ -1,0 +1,380 @@
+% ============================================================
+%  Lab Project Proposal — Topology Optimisation of Planar
+%  Elastic Energy-Storing Structures in a Fixed Area
+%
+%  Author : Heah Hung Xun (Jack)
+%  Course : <fill in course code>
+%  Supervisor : <fill in>
+%
+%  Compile with:  pdflatex  (or xelatex / lualatex if you prefer)
+%  Encoding : UTF-8
+% ============================================================
+
+\documentclass[11pt,a4paper]{article}
+
+% ---------- Page geometry ----------
+\usepackage[a4paper, margin=2.5cm, headheight=14pt]{geometry}
+
+% ---------- Fonts (your XCharter preamble) ----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{XCharter}                    % body serif
+\usepackage[scaled=0.96]{helvet}         % sans for headings
+\usepackage[varqu,varl]{inconsolata}     % monospace
+\usepackage[bigdelims,vvarbb]{newtxmath} % math to pair with XCharter
+\usepackage[cal=boondoxo]{mathalpha}
+
+% ---------- Core packages ----------
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{physics}
+\usepackage{siunitx}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{enumitem}
+\usepackage{microtype}
+\usepackage{csquotes}
+
+% ---------- Headings (minimal, sans, small caps) ----------
+\usepackage{titlesec}
+\titleformat{\section}
+  {\normalfont\sffamily\large\bfseries}{\thesection}{0.7em}{}
+\titleformat{\subsection}
+  {\normalfont\sffamily\normalsize\bfseries}{\thesubsection}{0.6em}{}
+\titleformat{\subsubsection}
+  {\normalfont\sffamily\small\itshape}{\thesubsubsection}{0.5em}{}
+\titlespacing{\section}{0pt}{1.4em}{0.5em}
+\titlespacing{\subsection}{0pt}{1.1em}{0.3em}
+
+% ---------- Header / footer ----------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\footnotesize\sffamily Lab Project Proposal}
+\fancyhead[R]{\footnotesize\sffamily \thepage}
+\renewcommand{\headrulewidth}{0pt}
+
+% ---------- Colors (subtle) ----------
+\usepackage[dvipsnames]{xcolor}
+\definecolor{accent}{HTML}{2E4057}
+
+% ---------- Hyperlinks ----------
+\usepackage[colorlinks=true,
+            linkcolor=accent,
+            citecolor=accent,
+            urlcolor=accent]{hyperref}
+
+% ---------- Bibliography ----------
+\usepackage[backend=biber, style=numeric-comp, sorting=none]{biblatex}
+\addbibresource{references.bib}
+
+% ---------- Theorems / claim environments ----------
+\newtheoremstyle{claim}
+  {0.8em}{0.8em}        % space above, below
+  {\itshape}             % body font
+  {}                     % indent
+  {\bfseries\sffamily}   % head font
+  {.}{0.5em}             % punctuation after head, space
+  {}                     % head spec
+\theoremstyle{claim}
+\newtheorem{hypothesis}{Hypothesis}
+
+% ---------- Custom macros ----------
+\newcommand{\Vf}{V_{\!f}}
+\newcommand{\Um}{U/m}
+\newcommand{\sy}{\sigma_{\!y}}
+\newcommand{\xy}{x_{\!y}}
+\newcommand{\Ur}{U_r}
+\newcommand{\eff}{\text{eff}}
+
+% ---------- Title block ----------
+\title{
+  \sffamily\bfseries\large
+  Topology Optimisation of Planar Elastic \\
+  Energy-Storing Structures in a Fixed Area
+  \vspace{0.3em}\\
+  \normalfont\mdseries\normalsize Lab Project Proposal
+}
+\author{
+  \normalsize
+  <Your name>\\
+  \footnotesize <Student ID> \quad <Programme>\\
+  \footnotesize Supervisor: <supervisor name>
+}
+\date{\footnotesize\today}
+
+% ============================================================
+\begin{document}
+% ============================================================
+
+\maketitle
+\thispagestyle{empty}
+
+\begin{abstract}
+  \noindent
+  % One short paragraph (approx. 150-200 words):
+  % 1-2 sentences of motivation,
+  % 1 sentence stating the two hypotheses at a high level,
+  % 1-2 sentences on the rig and material,
+  % 1 sentence on expected outcomes.
+\end{abstract}
+
+\vspace{1em}
+
+% ------------------------------------------------------------
+\section{Introduction and motivation}
+% ------------------------------------------------------------
+% Brief context: compliant mechanisms, topology optimisation
+% in planar elasticity, why energy storage rather than
+% compliance minimisation, and why this is an undergraduate-
+% level experimental project rather than pure simulation.
+
+% ------------------------------------------------------------
+\section{Background}
+% ------------------------------------------------------------
+
+\subsection{Topology optimisation in the fixed-area setting}
+% What TO is, what the design region means, SIMP in 88 lines,
+% the Michell-like optimum that linear-elastic compliance
+% minimisation tends towards.
+
+\subsection{Why linear compliance minimisation is not enough}
+% Cite Alacoque-James 2024, Chen-Zhang-Zhu 2018. The
+% interesting results come from nonlinear / buckling-aware
+% formulations; this motivates H2.
+
+\subsection{Volume fraction as the experimental control}
+% Define $V_f$, explain why fixing it decouples topology
+% from material budget, and give the target mass for the
+% chosen region.
+
+% ------------------------------------------------------------
+\section{Hypotheses}
+% ------------------------------------------------------------
+
+\begin{hypothesis}[Geometry screening]
+  % One-paragraph claim about how structure class controls
+  % specific energy under a fixed mass budget, comparing
+  % cantilever beam, Archimedean spiral, honeycomb lattice,
+  % and bistable arch array in the same planar region.
+\end{hypothesis}
+
+\begin{hypothesis}[Optimisation objective]
+  % One-paragraph claim about buckling-induced TO versus
+  % SIMP compliance TO versus the best H1 baseline. The
+  % point is that the choice of TO objective dominates the
+  % result, and compliance-minimising TO may sit inside the
+  % Pareto frontier defined by geometric baselines.
+\end{hypothesis}
+
+% ------------------------------------------------------------
+\section{Methods}
+% ------------------------------------------------------------
+
+\subsection{Design region and mass budget}
+% Specify 100 x 100 x 3 mm region, $V_f = 0.30$,
+% target specimen mass, and the rationale.
+
+\subsection{Material selection}
+% Short justification for PETG vs PLA, Nylon, TPU.
+% Include the resilience-modulus argument U_r = sy^2/(2E)
+% and the printability / hysteresis trade-off.
+
+\subsection{Specimen fabrication}
+% Printer, nozzle, layer height, wall count, infill,
+% raster angle, temperature, speed, drying protocol.
+% State the acceptance criterion (mass within +/- 2 percent).
+
+\subsection{Experimental rig: PASCO Smart Cart with pulley loading}
+% Describe the cart-on-track quasi-static loading rig,
+% how synchronisation of $F$ and $x$ is handled, and
+% why a pulley + water-cup ramp gives quasi-static
+% strain rates appropriate for PETG viscoelasticity.
+
+\begin{figure}[H]
+  \centering
+  % \includegraphics[width=0.85\linewidth]{figures/rig_diagram.pdf}
+  \caption{Schematic of the PASCO cart + pulley loading rig.
+           Placeholder -- replace with a CAD or hand-drawn figure.}
+  \label{fig:rig}
+\end{figure}
+
+\subsection{Variables and controls}
+
+\begin{table}[H]
+  \centering\small
+  \caption{Variables for Hypothesis 1 (geometry screening).}
+  \label{tab:h1vars}
+  \begin{tabularx}{\linewidth}{@{}l l X@{}}
+    \toprule
+    Variable & Type & Role / measurement \\
+    \midrule
+    $L$, $t$ & Controlled & Region dimensions \\
+    $\Vf$    & Controlled & Material volume fraction \\
+    Geometry class & Independent & Beam / spiral / honeycomb / bistable \\
+    $x(t)$   & Controlled & PASCO encoder \\
+    $F(x)$   & Dependent  & PASCO force sensor \\
+    $U$      & Dependent (derived) & $\int_0^{x^\ast} F\,dx$ \\
+    $\Um$    & Primary outcome & Specific stored energy \\
+    $\xy$    & Dependent  & First 0.2 percent offset yield \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+\begin{table}[H]
+  \centering\small
+  \caption{Variables for Hypothesis 2 (optimisation objective).}
+  \label{tab:h2vars}
+  \begin{tabularx}{\linewidth}{@{}l l X@{}}
+    \toprule
+    Variable & Type & Role / measurement \\
+    \midrule
+    TO objective $\lambda$ & Independent & 0 = SIMP compliance, 1 = buckling-induced \\
+    Filter radius $r_{\min}$ & Controlled & Manufacturability constraint \\
+    $\Um$   & Dependent & Primary comparison metric \\
+    $\eta_N$ & Dependent & Fractional hysteresis per cycle \\
+    $k_N$   & Dependent & Loading-branch stiffness per cycle \\
+    $\Delta k / k_0$ & Dependent & Damage accumulation indicator \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+% ------------------------------------------------------------
+\section{Measurement protocol}
+% ------------------------------------------------------------
+
+\subsection{Phase 0: Material characterisation}
+% Tensile coupons to extract $E$, $\sigma_y$, $\rho$ for
+% the specific print conditions used.
+
+\subsection{Phase 1: Specimen preparation}
+% CAD verification of target volume, print parameters,
+% acceptance criteria, storage conditions.
+
+\subsection{Phase 2: Rig calibration}
+% Thermal equilibration, levelling, tare, three-mass
+% verification, friction baseline capture.
+
+\subsection{Phase 3: H1 quasi-static ramp protocol}
+% Load-unload cycles, recovery pauses, data logging,
+% post-processing (friction subtraction, $U$ and $\xy$
+% extraction).
+
+\subsection{Phase 4: H2 cyclic loading protocol}
+% Preconditioning, 100-cycle run at fixed amplitude,
+% automation approach, post-processing (loop area,
+% stiffness drift, plateau hysteresis).
+
+\subsection{Phase 5: Aggregation and statistics}
+% Summary table layout, ANOVA for H1, $t$-tests for H2,
+% Pareto scatter construction.
+
+% ------------------------------------------------------------
+\section{Expected results}
+% ------------------------------------------------------------
+
+\subsection{Analytic predictions}
+% State the closed-form predictions: Euler-Bernoulli
+% cantilever, Gibson-Ashby honeycomb, Qiu-Lang-Slocum
+% bistable arch, Chen-Zhang-Zhu buckling-induced TO.
+% One short paragraph per model with the governing
+% expression.
+
+\subsection{Simulation predictions}
+% Reference the simulation figures below. State the
+% predicted specific-energy ranking and the predicted
+% Pareto structure.
+
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}[t]{0.48\linewidth}
+    % \includegraphics[width=\linewidth]{figures/fig_H1_Fx.pdf}
+    \caption{H1: $F(x)$ for geometric baselines.}
+    \label{fig:h1fx}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[t]{0.48\linewidth}
+    % \includegraphics[width=\linewidth]{figures/fig_H2_Fx.pdf}
+    \caption{H2: TO variants vs. best baseline.}
+    \label{fig:h2fx}
+  \end{subfigure}
+  \caption{Expected force-displacement curves.}
+  \label{fig:fx}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}[t]{0.48\linewidth}
+    % \includegraphics[width=\linewidth]{figures/fig_specific.pdf}
+    \caption{Specific energy ranking.}
+    \label{fig:specific}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[t]{0.48\linewidth}
+    % \includegraphics[width=\linewidth]{figures/fig_pareto.pdf}
+    \caption{Efficiency-stability Pareto scatter.}
+    \label{fig:pareto}
+  \end{subfigure}
+  \caption{Expected performance metrics.}
+  \label{fig:results}
+\end{figure}
+
+\subsection{Statistical predictions}
+% One-way ANOVA expected $F$-statistic for H1;
+% two-sample $t$-test predictions for H2.
+
+% ------------------------------------------------------------
+\section{Risks and limitations}
+% ------------------------------------------------------------
+% Known confounds: print anisotropy, PETG viscoelasticity,
+% cord friction, load misalignment. How each is controlled
+% or measured.
+
+% ------------------------------------------------------------
+\section{Timeline and deliverables}
+% ------------------------------------------------------------
+% Week-by-week schedule. Deliverables: dataset,
+% figures, final report.
+
+\begin{table}[H]
+  \centering\small
+  \caption{Project timeline.}
+  \label{tab:timeline}
+  \begin{tabularx}{\linewidth}{@{}l l X@{}}
+    \toprule
+    Week & Phase & Tasks \\
+    \midrule
+    1-2  & Planning      & \\
+    3-4  & Fabrication   & \\
+    5-6  & H1 testing    & \\
+    7-9  & H2 testing    & \\
+    10   & Analysis      & \\
+    11-12& Writing       & \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+% ------------------------------------------------------------
+\section*{References}
+% ------------------------------------------------------------
+\printbibliography[heading=none]
+
+% ============================================================
+\appendix
+% ============================================================
+
+\section{PETG mechanical properties (characterisation data)}
+% Table of measured $E$, $\sigma_y$, $\rho$ from coupons.
+
+\section{CAD geometry specifications}
+% Dimensioned drawings of each test geometry.
+
+\section{Raw data and processing scripts}
+% Location of CSV files, Python processing scripts,
+% Capstone project files.
+
+\end{document}

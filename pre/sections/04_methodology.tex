@@ -2,33 +2,79 @@
 %  SECTION 4 — METHODOLOGY
 % ============================================================
 
-\begin{frame}{Theoretical Basis}
-  \begin{itemize}
-    \item 
-    \item TODO: Key relation or equation, e.g.:
-      \[
-        \text{TODO:} \quad f(x) = \ldots
-      \]
-    \item TODO: Assumptions and their justification.
-  \end{itemize}
-\end{frame}
+
+% \begin{frame}{Methodology Flowchart}
+%   \centering
+%   \begin{tikzpicture}[node distance=0.6cm and 0.8cm,
+%       box/.style={draw, thick, rounded corners=3pt, fill=blue!8,
+%                   minimum width=2.4cm, minimum height=0.7cm,
+%                   align=center, font=\scriptsize},
+%       arr/.style={-{Stealth[length=2mm]}, thick}]
+
+%     % Left branch: Computational
+%     \node[box, fill=cyan!15] (topo) {Define domain \&\\boundary conditions};
+%     \node[box, fill=cyan!15, below=of topo] (simp) {Run SIMP\\(Octave code)};
+%     \node[box, fill=cyan!15, below=of simp] (cand) {Extract optimised\\candidates};
+
+%     % Right branch: Manual
+%     \node[box, fill=green!15, right=2.5cm of topo] (base) {Design 4 baseline\\topologies};
+%     \node[box, fill=green!15, below=of base] (cad) {CAD modelling\\(FreeCAD)};
+%     \node[box, fill=green!15, below=of cad] (stl) {Export STL files};
+
+%     % Merge
+%     \node[box, fill=yellow!20, below=0.8cm of $(cand)!0.5!(stl)$] (print) {3D print all\\samples (PLA)};
+%     \node[box, fill=orange!15, below=of print] (test) {Compress \& measure\\$F$--$\delta$ curves};
+%     \node[box, fill=red!12, below=of test] (anal) {Compute $E_{\text{in}}$,
+%           $E_{\text{out}}$, $\eta$\\Compare topologies};
+
+%     % Arrows
+%     \draw[arr] (topo) -- (simp);
+%     \draw[arr] (simp) -- (cand);
+%     \draw[arr] (base) -- (cad);
+%     \draw[arr] (cad)  -- (stl);
+%     \draw[arr] (cand) |- (print);
+%     \draw[arr] (stl)  |- (print);
+%     \draw[arr] (print) -- (test);
+%     \draw[arr] (test) -- (anal);
+%   \end{tikzpicture}
+% \end{frame}
 
 \begin{frame}{Analysis Plan}
   \small
   \begin{enumerate}
-    \item \textbf{Data acquisition:} TODO (what is recorded, at what rate/resolution)
-    \item \textbf{Preprocessing:} TODO (cleaning, calibration, normalisation)
-    \item \textbf{Feature extraction:} TODO (quantities to be computed)
-    \item \textbf{Statistical treatment:} TODO (error analysis, hypothesis tests)
-    \item \textbf{Validation:} TODO (controls, cross-checks, known benchmarks)
+    \item \textbf{Data acquisition:}
+          Record force $F$ and displacement $\delta$ at 0.1\,mm
+          increments during quasi-static compression.
+          Repeat each topology $\ge 3$ times.
+    \item \textbf{Preprocessing:}
+          Zero-offset correction; apply force sensor calibration
+          curve; discard first cycle (pre-conditioning).
+    \item \textbf{Feature extraction:}
+          \begin{itemize}
+            \item Stiffness: slope of linear region of $F$--$\delta$ curve.
+            \item $E_{\text{in}}$: area under loading curve (trapezoidal integration).
+            \item $E_{\text{out}}$: area under unloading curve.
+            \item $\eta = E_{\text{out}}/E_{\text{in}}$.
+          \end{itemize}
+    \item \textbf{Statistical treatment:}
+          Mean $\pm$ standard deviation across trials;
+          compare topologies using bar charts with error bars.
+    \item \textbf{Validation:}
+          Compare experimental stiffness with FEA prediction
+          (if time permits, COMSOL cross-check).
   \end{enumerate}
 \end{frame}
 
-\begin{frame}{Expected Deliverables}
-  % What concrete outputs will the project produce?
-  \begin{itemize}
-    \item TODO: e.g. a characterised dataset / calibrated apparatus.
-    \item TODO: e.g. a fitted model or extracted physical parameter.
-    \item TODO: e.g. a comparison against theory or published values.
-  \end{itemize}
-\end{frame}
+% \begin{frame}{Expected Deliverables}
+%   \begin{itemize}
+%     \item Working topology-optimisation code (Octave) and 1--2 optimised
+%           candidate geometries.
+%     \item CAD models and 3D-printed samples for 4 baselines + optimised
+%           structures.
+%     \item Force--displacement dataset for all tested topologies.
+%     \item Quantitative comparison: stiffness, $E_{\text{in}}$,
+%           $E_{\text{out}}$, $\eta$ across designs.
+%     \item Final report with analysis of how topology governs elastic
+%           energy storage performance.
+%   \end{itemize}
+% \end{frame}

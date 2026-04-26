@@ -1,49 +1,40 @@
 % ============================================================
-%  SECTION — BUDGET
-%
-%  HOW TO CUSTOMISE
-%  ─────────────────
-%  1. Fill in each line item: description, quantity, unit cost, total.
-%  2. The "Total" row is computed manually — update it when you add rows.
-%  3. Add/remove \midrule-separated categories as needed.
-%  4. Change "MYR" to your currency if necessary.
-%  5. Note funding source / acquisition method in the footnote line.
+%  SECTION 7 — BUDGET
 % ============================================================
-
-
 
 \begin{frame}{Budget}
   \centering
-  \small
+  \footnotesize
 
-  % X column stretches to fill \textwidth, keeping numeric columns fixed-width
   \begin{tabularx}{\textwidth}{X r r r}
     \toprule
     \textbf{Item} & \textbf{Qty} & \textbf{Unit (MYR)} & \textbf{Total (MYR)} \\
     \midrule
     % ---- Equipment ----
     \multicolumn{4}{l}{\textit{Equipment}} \\
-    TODO: Item name  & TODO & TODO & TODO \\
-    TODO: Item name  & TODO & TODO & TODO \\
+    Digital force gauge (0--50\,N)  & 1 & 45  & 45 \\
+    Lead screw + guide rail set    & 1 & 35  & 35 \\
+    Hand wheel                     & 1 & 10  & 10 \\
     \midrule
     % ---- Materials / Consumables ----
     \multicolumn{4}{l}{\textit{Materials \& Consumables}} \\
-    TODO: Item name  & TODO & TODO & TODO \\
-    TODO: Item name  & TODO & TODO & TODO \\
+    PLA filament (1\,kg spool)     & 1 & 40  & 40 \\
+    Acrylic base plate             & 1 & 15  & 15 \\
+    Bolts, nuts, clamps            & -- & --  & 20 \\
     \midrule
     % ---- Software / Licences ----
     \multicolumn{4}{l}{\textit{Software \& Licences}} \\
-    Open-source only & -- & -- & 0 \\
+    Open-source (Octave, FreeCAD, Python) & -- & -- & 0 \\
     \midrule
     % ---- Miscellaneous ----
     \multicolumn{4}{l}{\textit{Miscellaneous}} \\
-    TODO: Item name  & TODO & TODO & TODO \\
+    Spare filament \& reprints     & -- & -- & 20 \\
     \midrule[\heavyrulewidth]
-    \textbf{Total}   &      &      & \textbf{TODO} \\
+    \textbf{Total}   &      &      & \textbf{185} \\
     \bottomrule
   \end{tabularx}
 
   \vspace{0.5em}
-  % Funding source, acquisition notes (purchase / lab stock / borrowed), spending cap
-  {\footnotesize TODO: e.g.\ Requested from Physics Dept.\ student project fund (cap: MYR~500).}
+  {\footnotesize Requested from Physics Dept.\ student project fund (cap: MYR~500).
+   3D printer access via university makerspace.}
 \end{frame}
